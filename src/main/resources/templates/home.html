@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+    <title>Online Shopping Mall</title>
+    <meta content="" name="description"/>
+    <meta content="" name="keywords"/>
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon"/>
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"/>
+
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+            rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+            href="assets/vendor/bootstrap/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <link
+            href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+            rel="stylesheet"
+    />
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"/>
+    <link
+            href="assets/vendor/glightbox/css/glightbox.min.css"
+            rel="stylesheet"
+    />
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet"/>
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"/>
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet"/>
+
+    <!-- =======================================================
+  * Template Name: Personal - v4.2.0
+  * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+<!-- ======= Header ======= -->
+<div th:with="error=${session.message}">
+    <div th:if="${error} != null">
+        <div class="alert alert-success" role="alert">
+            <div th:text="${error}"></div>
+        </div>
+    </div>
+</div>
+<header id="header">
+    <div
+            class="container"
+            style="display: flex; flex-direction: column-reverse"
+    >
+        <h1 style="color: rgb(48, 42, 42); margin-top: 6px">
+            <a href="templates/index.html">Stella Couture Shopping Cart</a>
+        </h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
+        <h2>
+            <div style="color: black; line-height: 56px">
+                Shop of Africa® KFC has revolutionized the
+                <span style="color:  rgb(48, 42, 42);">shopping experiences</span>
+            </div>
+            and become a leader in retail,
+            <span style="color:  rgb(48, 42, 42);">entertainment and attractions.</span>
+        </h2>
+        <nav
+            id="navbar"
+            class="navbar"
+            style="
+                border: 1px solid rgb(20, 18, 18);
+                padding: 10px;
+                background: rgba(239, 243, 240, 0.87);
+                z-index: 1;
+                border-radius: 15px;
+                border-bottom-left-radius: 20px;
+                border-bottom-left-radius: 20px;
+            "
+        >
+            <ul>
+                <li><a class="nav-link active" href="#header">Home</a></li>
+                <li><a class="nav-link" href="#portfolio">Products</a></li>
+                <li><a class="nav-link" href="#profile">Profile</a></li>
+                <li><a class="nav-link" href="#contact">Admin</a></li>
+                <li><a class="nav-link" th:href="@{/processLogout}" style="color: rgb(48, 42, 42);">Logout</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+    </div>
+</header>
+<!-- End Header -->
+
+<!-- ======================================================= Product Section ============================================================ -->
+<!-- ======================================================= Product Section ============================================================ -->
+<section id="portfolio" class="portfolio">
+    <div class="container">
+        <div class="section-title">
+            <h2>Products</h2>
+            <p>Start Shopping</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <ul id="portfolio-flters">
+                    <li data-filter="*" class="filter-active">All</li>
+                    <li data-filter=".filter-app">Men Wear</li>
+                    <li data-filter=".filter-card">Women Wear</li>
+                    <li data-filter=".filter-web">Cosmetics</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row portfolio-container">
+            <div th:each="product : ${products}">
+                <div th:if="${shop.getCategory() == 'MEN WEAR'}">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                        <div class="portfolio-wrap">
+                            <img
+                                    th:src="${shop.getImage()}"
+                                    class="img-fluid"
+                                    alt=""
+                            />
+                            <div class="portfolio-info">
+                                <h4 th:text="${shop.getCategory()}"></h4>
+                                <p th:text="${shop.getName()}"></p>
+                                <div class="portfolio-links">
+                                    <a
+                                        th:onclick="'prod('+${shop.getId()}+')'"
+                                        data-gallery="portfolioDetailsGallery"
+                                        data-glightbox="type: external"
+                                        class="portfolio-details-lightbox"
+                                        title="Portfolio Details"
+                                    ><i class="bx bx-link"></i
+                                    ></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div th:if="${shop.getCategory()=='WOMEN WEAR'}">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                        <div class="portfolio-wrap">
+                            <img
+                                    th:src="${shop.getImage()}"
+                                    class="img-fluid"
+                                    alt=""
+                            />
+                            <div class="portfolio-info">
+                                <h4 th:text="${shop.getCategory()}"></h4>
+                                <p th:text="${shop.getName()}"></p>
+                                <div class="portfolio-links">
+                                    <a th:onclick="'prod('+${shop.getId()}+')'"
+                                        data-gallery="portfolioDetailsGallery"
+                                        data-glightbox="type: external"
+                                        class="portfolio-details-lightbox"
+                                        title="Portfolio Details"
+                                    ><i class="bx bx-link"></i
+                                    ></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div th:if="${shop.getCategory() == 'COSMETICS'}">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                        <div class="portfolio-wrap">
+                            <img
+                                th:src="${shop.getImage()}"
+                                class="img-fluid"
+                                alt=""
+                            />
+                            <div class="portfolio-info">
+                                <h4 th:text="${shop.getCategory()}"></h4>
+                                <p th:text="${shop.getName()}"></p>
+                                <div class="portfolio-links">
+                                    <a th:onclick="'prod('+${shop.getId()}+')'"
+                                        data-gallery="portfolioDetailsGallery"
+                                        data-glightbox="type: external"
+                                        class="portfolio-details-lightbox"
+                                        title="Portfolio Details"
+                                    ><i class="bx bx-link"></i
+                                    ></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- =======================================================Profile Section ============================================================ -->
+<!-- =======================================================Profile Section ============================================================ -->
+<section id="profile" class="portfolio">
+    <div class="container">
+        <div class="section-title">
+            <h2>MY PROFILE</h2>
+            <p th:text="${customer.fullName}"></p>
+            <p th:text="${customer.email}"></p>
+            <p th:text="${customer.phoneNumber}"></p>
+            <p>Product(s) added to cart</p>
+        </div>
+        <div>Cart <span th:text="${size}"></span> items</div>
+
+        <div th:each="order: ${orders}">
+            <div class="row portfolio-container">
+                <div class="col-lg-6 col-md-6 portfolio-item filter-web">
+                    <div class="portfolio-wrap">
+                        <img
+                                th:src="${cartItem.getShop().getImage()}"
+                                class="img-fluid"
+                                alt=""
+                        />
+                        <div class="portfolio-info">
+                            <h4 th:text="${cartItem.getShop().getCategory()}"></h4>
+                            <p th:text="${cartItem.getShop().getName()}">Web</p>
+                            <div class="portfolio-links">
+                                <a
+                                    th:onclick="'prod('+${cartItem.getShop().getId()}+')'"
+                                    data-gallery="portfolioDetailsGallery"
+                                    data-glightbox="type: external"
+                                    class="portfolio-details-lightbox"
+                                    title="Portfolio Details"
+                                ><i class="bx bx-link"></i
+                                ></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="col-lg-6 col-md-6 portfolio-item filter-web"
+                    style="line-height: 50px"
+                >
+                    <h4>ITEM</h4>
+                    <div><strong>ORDER :</strong><span th:text="${cartItem.getMyCartItem()}"></span></div>
+                    <div><strong> UNIT PRICE: #</strong><span th:text="${cartItem.getShop().getPrice()}"></span></div>
+                    <div><strong>SUBTOTAL: #</strong><span th:text="${cartItem.getSum()}"></span></div>
+                    <br/>
+                    <button th:onclick="'delOrder('+${cartItem.getId()}+')'" type="button" class="btn btn-warning">
+                        DELETE ORDER
+                    </button>
+                    <button type="button" class="btn btn-success">
+                        PROCEED TO CHECKOUT
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- =======================================================Admin Section ============================================================ -->
+<!-- =======================================================Admin Section ============================================================ -->
+<section th:if="${customer.getPosition() == 'admin'}" id="contact" class="contact">
+    <div class="container" th:with="user = ${user}">
+        <div class="section-title">
+            <h2>Contact</h2>
+            <p>Contact Me</p>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-6 d-flex align-items-stretch">
+                <div class="info-box">
+                    <i class="bx bx-map"></i>
+                    <h3>Name</h3>
+                    <p th:text="${customer.getFullName()}"></p>
+                </div>
+            </div>
+
+            <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
+                <div class="info-box">
+                    <i class="bx bx-share-alt"></i>
+                    <h3>Social Profiles</h3>
+                    <div class="social-links">
+                        <a href="#"
+                        >linkedin <i class="bi-linkedin"></i></a
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mt-4 d-flex align-items-stretch">
+                <div class="info-box">
+                    <i class="bx bx-envelope"></i>
+                    <h3>Email Me</h3>
+                    <p th:text="${customer.getEmail()}">contact@example.com</p>
+                </div>
+            </div>
+            <div class="col-md-6 mt-4 d-flex align-items-stretch">
+                <div class="info-box">
+                    <i class="bx bx-phone-call"></i>
+                    <h3>Call Me</h3>
+                    <p th:text="${customer.getPhoneNumber()}">+1 5589 55488 55</p>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <h2>Post New Product</h2><hr style="color: #4ceb95"/>
+        <form th:action="@{/adminFormProcessing}" th:object="${product}" method="POST" role="form" enctype="multipart/form-data" >
+            <div class="row">
+                <div class="col-md-6 form-group" style="margin-bottom: 20px">
+                    <label for="name">Product Name</label><br/>
+                    <input
+                        type="text"
+                        th:field="*{name}"
+                        th:value="${shop.getName()}"
+                        name="name"
+                        class="form-control"
+                        id="name"
+                        placeholder="Product Name"
+                        required
+                    />
+                </div>
+                <div class="col-md-6 form-group" style="margin-bottom: 20px">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01"
+                        >Category of the Product (Choose) </label
+                        >
+                    </div>
+                    <br/>
+                    <select class="custom-select" id="inputGroupSelect01" th:field="*{category}">
+                        <option name="category" th:value="${'MEN WEAR'}">MEN WEAR</option>
+                        <option name="category" th:value="${'WOMEN WEAR'}">WOMEN WEAR</option>
+                        <option name="category" th:value="${'COSMETICS'}">COSMETICS</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group" style="margin-bottom: 20px">
+                    <label for="count">Product Quantity</label><br/>
+                    <input
+                        type="number"
+                        th:field="*{quantity}"
+                        name="name"
+                        class="form-control"
+                        id="count"
+                        placeholder="Product Quantity"
+                        required
+                    />
+                </div>
+
+                <div class="col-md-6 form-group" style="margin-bottom: 20px">
+                    <label for="price">Product Price</label><br/>
+                    <input
+                        type="number"
+                        th:field="*{price}"
+                        name="name"
+                        class="form-control"
+                        id="price"
+                        placeholder="Product Price"
+                        required
+                    />
+                </div><br/>
+                <div class="col-md-6 form-group" style="margin-bottom: 20px">
+                    <label for="file_img">Upload Image of the product</label><br/>
+                    <input
+                        type="file"
+                        name="file"
+                        class="form-control"
+                        id="file_img"
+                        required
+                    />
+                </div><br/>
+                <div class="col-md-6 form-group" style="margin-bottom: 20px">
+                    <label for="description">The Product Description</label><br/>
+                    <textarea
+                        name="description"
+                        th:field="*{description}"
+                        id="description"
+                        rows="5"
+                        cols="55"
+                    ></textarea>
+                </div>
+                <br/>
+            </div>
+            <input class="btn btn-success" type="submit"/>
+        </form>
+        <hr style="color: #4ceb95"/>
+        <div class="container-fluid">
+            <table class="table table-striped">
+                <thead>
+                <tr style="color: #fff">
+                    <th scope="col">Product Image</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Product Category</th>
+                    <th scope="col">Product Price</th>
+                    <th scope="col">Product Quantity</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <div th:each="pro: ${products}">
+                        <tr style="color: #fff">
+                            <th scope="row"><img th:src="${pro.getImage()}" width="50px" height="50px"></th>
+                            <td th:text="${pro.getName()}"></td>
+                            <td th:text="${pro.getCategory()}"></td>
+                            <td th:text="${pro.getPrice()}"></td>
+                            <td th:text="${pro.getQuantity()}"></td>
+                            <td><button class="btn btn-danger" th:onclick="'del('+${pro.getId()}+')'">Delete<i class="fa fa-remove"></i></button></td>
+                            <td><button type="button" class="btn btn-warning" th:onclick="'edit('+${pro.getId()}+')'">Edit</button></td>
+                        </tr>
+                    </div>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!-- End Contact Section -->
+
+<div class="credits">
+    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+</div>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/purecounter/purecounter.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+<script>
+
+    function prod(id){
+        window.location.href = "/product/"+id;
+    }
+
+    function del(id){
+        console.log("delete "+id);
+        window.location.href = "/delete/"+id;
+    }
+
+    function edit(id){
+        console.log("edit "+id);
+        window.location.href = "/edit/"+id;
+    }
+
+    function delOrder(id){
+        console.log("delOrder "+id);
+        window.location.href = "/deleteOrder/"+id;
+    }
+</script>
+</body>
+</html>

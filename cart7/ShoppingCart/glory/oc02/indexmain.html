@@ -1,0 +1,732 @@
+	<!DOCTYPE html>
+	<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Shopping Store</title>
+	<base  /><meta name="description" content="Glory Store" /><script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+	<link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+	<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript" defer="defer"></script>
+	<script src="catalog/view/javascript/jquery/owl-carousel/owl.carousel.min.js" type="text/javascript"></script>
+	<link href="catalog/view/javascript/jquery/owl-carousel/owl.carousel.css" rel="stylesheet" media="screen" />
+	<link href="catalog/view/javascript/jquery/owl-carousel/owl.transitions.css" rel="stylesheet" media="screen" />
+	<script src="catalog/view/javascript/at/jquery.custom.min.js" type="text/javascript"></script>
+	<script src="catalog/view/javascript/at/custom.js" type="text/javascript"></script>
+	<link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Open+Sans|Poppins|Montserrat|Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+	<link href="catalog/view/theme/glory02/stylesheet/atstyle.css" rel="stylesheet">
+	<link href="catalog/view/theme/glory02/stylesheet/blog.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="catalog/view/javascript/jquery/owl-carousel/owl.carousel.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="admin/view/template/extension/module/so_page_builder/assets/css/shortcodes.css" type="text/css" rel="stylesheet" media="screen" />
+	<link href="admin/view/template/extension/module/so_page_builder/assets/css/carousel.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="admin/view/template/extension/module/so_page_builder/assets/css/magnific-popup.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="admin/view/template/extension/module/so_page_builder/assets/css/owl.carousel.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="catalog/view/javascript/so_page_builder/css/style_render_34.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="catalog/view/javascript/so_page_builder/css/style.css" type="text/css" rel="stylesheet" media="screen" />
+    <script src="catalog/view/javascript/common.js" type="text/javascript"></script><link href="https://opencart.multipurposethemes.com/glory/oc02/" rel="canonical" />
+    <link href="image/catalog/cart.png" rel="icon" /><script src="catalog/view/javascript/jquery/owl-carousel/owl.carousel.min.js" type="text/javascript"></script>
+    <script src="admin/view/template/extension/module/so_page_builder/assets/js/shortcodes.js" type="text/javascript"></script>
+    <script src="admin/view/template/extension/module/so_page_builder/assets/js/magnific-popup.js" type="text/javascript"></script>
+    <script src="admin/view/template/extension/module/so_page_builder/assets/js/owl.carousel.js" type="text/javascript"></script>
+    <script src="catalog/view/javascript/so_page_builder/js/section.js" type="text/javascript"></script>
+    <script src="catalog/view/javascript/so_page_builder/js/modernizr.video.js" type="text/javascript"></script>
+    <script src="catalog/view/javascript/so_page_builder/js/swfobject.js" type="text/javascript"></script>
+    <script src="catalog/view/javascript/so_page_builder/js/video_background.js" type="text/javascript"></script>
+    <link href="catalog/view/javascript/so_megamenu/so_megamenu.css" rel="stylesheet" type="text/css" />
+	<link href="catalog/view/javascript/so_megamenu/wide-grid.css" rel="stylesheet" type="text/css" />
+	<script src="catalog/view/javascript/so_megamenu/so_megamenu.js" type="text/javascript"></script>
+	</head>
+	<body class="common-home">   
+	<header>
+	   <div class="header_outer"> 
+	      <div class="header-top">
+	        <div class="container">
+	          <div class=" col-md-8 col-sm-8 col-xs-12 no-space">
+				  <div class="container headermodule">
+	   <div class="row">
+		   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 atheader1">
+        <div class="col-sm-6 at-text-left"><a href="tel:0123654789;">
+        <i class="fa fa-mobile"></i>&nbsp;&nbsp;<span class="ml__5">+01 23456789</span>
+        </a> &nbsp;&nbsp;&nbsp; <a href="mailto:helloe@domain.com">
+            <i class="fa fa-envelope-open"></i>&nbsp;&nbsp;<span>StellaCouture@biz.com</span></a></div>
+       <div class="col-sm-6 at-text-right">
+		   <div class="header_social">
+	         <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
+	         <a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a>
+	           <a href=""><i class="fa fa-youtube" aria-hidden="true"></i></a>
+	         <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+	      </div>
+	   </div>
+		</div>
+	   </div>
+		</div>
+		</div>
+		</div>
+	 	</div>
+	 </div>
+	 <div class="header">
+	          <div class="container">
+	            <div class=" col-md-2 col-sm-2 col-xs-12 at-text-center">
+	              <div id="logo">
+	              	<a href=""><img src="" title="Stella Couture" alt="" class="img-responsive"/><h4><b>Stella Couture</b></h4></a>  
+	               </div>
+	            </div>          
+	  <div class="col-md-8 col-sm-5 col-xs-2">              
+	  <div class="megamenu"><div class="responsive">	
+	  <nav class="navbar-default">
+	<div class=" container-megamenuhorizontal">			
+	<div class="navbar-header">
+			<button type="button" id="show-megamenu" data-toggle="collapse"  class="navbar-toggle">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>			
+				<div class="megamenu-wrapper">			
+	           <span id="remove-megamenu" class="fa fa-times"></span>
+				<div class="megamenu-pattern">
+		<div class="container">
+		<ul class="megamenu"data-transition="slide" data-animationtime="500">							
+		<li class="home"><a href="index9328.html?route=common/home"><span><strong>Home</strong></span></a>
+		</li>						
+	<li class=" with-sub-menu hover">
+	<p class='close-menu'></p>
+	<a href="index8122.html?route=product/category&amp;path=34" class="clearfix">
+	<strong>Men</strong><b class='caret'></b>
+	</a>
+		<div class="sub-menu" style="width:100%">
+	<div class="content">
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="link">
+        	<img src="image/catalog/Data/263x360.jpg" alt="" style="width: 100%;">
+			</div>
+		</div>
+			<div class="col-sm-9">
+				<div class="categories">
+					<div class="row">
+						<div class="col-sm-6 static-menu">
+							<div class="menu"><ul><li>
+								<a href="index98dc.html?route=product/category&amp;path=20" onclick="window.location = 'index98dc.html?route=product/category&amp;path=20';" class="main-menu">Accessories</a>
+								<ul><li><a href="indexd9fe.html?route=product/category&amp;path=20_26" onclick="window.location = 'indexd9fe.html?route=product/category&amp;path=20_26';">Miren tukan</a>
+								</li><li><a href="indexb1f6.html?route=product/category&amp;path=20_66" onclick="window.location = 'indexb1f6.html?route=product/category&amp;path=20_66';">Elit</a></li><li>
+								<a href="index59ad.html?route=product/category&amp;path=20_64" onclick="window.location = 'index59ad.html?route=product/category&amp;path=20_64';">Erat Volutpat</a></li><li>
+								<a href="index7fa3.html?route=product/category&amp;path=18" onclick="window.location = 'index7fa3.html?route=product/category&amp;path=18';">Consequat</a></li><li>
+								<a href="index5271.html?route=product/category&amp;path=33_62" onclick="window.location = 'index5271.html?route=product/category&amp;path=33_62';">Interdum</a></li></ul></li><li>
+								<a href="index8122.html?route=product/category&amp;path=34" onclick="window.location = 'index8122.html?route=product/category&amp;path=34';" class="main-menu">Winter Collection</a><ul><li>
+										<a href="indexcaeb.html?route=product/category&amp;path=34_69" onclick="window.location = 'indexcaeb.html?route=product/category&amp;path=34_69';">Etiam</a></li><li>
+											<a href="index7582.html?route=product/category&amp;path=34_70" onclick="window.location = 'index7582.html?route=product/category&amp;path=34_70';">Etiam nec</a></li><li>
+											<a href="index5018.html?route=product/category&amp;path=34_24" onclick="window.location = 'index5018.html?route=product/category&amp;path=34_24';">Noracklace</a></li><li>
+										<a href="index98dc.html?route=product/category&amp;path=20" onclick="window.location = 'index98dc.html?route=product/category&amp;path=20';">Accessories</a>
+										</li></ul></li></ul>
+							</div>
+						</div>
+						<div class="col-sm-6 static-menu">
+							<div class="menu"><ul><li><a href="index5018.html?route=product/category&amp;path=34_24" onclick="window.location = 'index5018.html?route=product/category&amp;path=34_24';" class="main-menu">Noracklace</a>
+                                <ul><li><a href="index8122.html?route=product/category&amp;path=34" onclick="window.location = 'index8122.html?route=product/category&amp;path=34';">Winter Collection</a></li><li><a href="indexcaeb.html?route=product/category&amp;path=34_69" onclick="window.location = 'indexcaeb.html?route=product/category&amp;path=34_69';">Etiam</a></li><li><a href="index7582.html?route=product/category&amp;path=34_70" onclick="window.location = 'index7582.html?route=product/category&amp;path=34_70';">Etiam nec</a></li><li><a href="index7fa3.html?route=product/category&amp;path=18" onclick="window.location = 'index7fa3.html?route=product/category&amp;path=18';">Consequat</a></li><li><a href="index84f4.html?route=product/category&amp;path=33_61" onclick="window.location = 'index84f4.html?route=product/category&amp;path=33_61';">Gravida</a></li></ul></li><li><a href="index68ea.html?route=product/category&amp;path=33" onclick="window.location = 'index68ea.html?route=product/category&amp;path=33';" class="main-menu">Summer Collection</a><ul><li><a href="indexb1f6.html?route=product/category&amp;path=20_66" onclick="window.location = 'indexb1f6.html?route=product/category&amp;path=20_66';">Elit</a></li><li><a href="indexf5ce.html?route=product/category&amp;path=20_65" onclick="window.location = 'indexf5ce.html?route=product/category&amp;path=20_65';">Donec Tempus</a></li><li><a href="index59ad.html?route=product/category&amp;path=20_64" onclick="window.location = 'index59ad.html?route=product/category&amp;path=20_64';">Erat Volutpat</a></li><li><a href="index5018.html?route=product/category&amp;path=34_24" onclick="window.location = 'index5018.html?route=product/category&amp;path=34_24';">Noracklace</a></li></ul></li></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	</div>
+				  </li>						
+				<li class="tableclass with-sub-menu hover">
+				<p class='close-menu'></p><a href="index7fa3.html?route=product/category&amp;path=18" class="clearfix">
+				<strong>Women</strong><b class='caret'></b>
+				</a><div class="sub-menu" style="width:100%">
+				<div class="content"><div class="row"><div class="col-sm-12">
+					<div class="col-sm-2">
+		<div class="product-thumb">
+	  <div class="image"><a href="indexd21c.html?route=product/product&amp;product_id=47">
+	<img src="image/cache/catalog/Data/product/product-5-100x100.jpg" alt="Andouille eu" title="Andouille eu" class="img-responsive" />
+		</a>
+	</div>
+	<div>
+	<div class="caption">
+	<h4><a href="indexd21c.html?route=product/product&amp;product_id=47">Andouille eu</a></h4>
+	<p>gggg</p><p class="price">$100.00<span class="price-tax">$100.00</span>
+    	</p>						</div>
+	</div>
+	</div>
+	</div><div class="col-sm-2"><div class="product-thumb">
+	<div class="image">
+	<a href=".html?route=product/product&amp;product_id=42">
+	<img src="image/cache/catalog/Data/product/product-1-100x100.jpg" alt="Accumsan Elit" title="Accumsan Elit" class="img-responsive" />
+	</a>
+	</div>
+	<div>
+	<div class="caption">
+	<h4><a href="indexbb02.html?route=product/product&amp;product_id=42">Accumsan Elit</a></h4>
+	<p>.</p>
+	<p class="price"><span class="price-new">$90.00</span>
+	<span class="price-old">$100.00</span><span class="price-tax">$90.00</span>
+	</p></div></div></div></div><div class="col-sm-2">
+	<div class="product-thumb">
+	<div class="image">
+	<a href="index75be.html?route=product/product&amp;product_id=50">
+	<img src="image/cache/catalog/Data/product/product-3-100x100.jpg" alt="Adipiscing Elit" title="Adipiscing Elit" class="img-responsive" />
+	</a>
+	</div>
+	<div>
+<div class="caption">
+<h4><a href="index75be.html?route=product/product&amp;product_id=50">Adipiscing Elit</a></h4>
+<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et..</p>
+<p class="price"><span class="price-new">$75.00</span>
+<span class="price-old">$100.00</span><span class="price-tax">$75.00</span>
+</p></div>
+</div>
+</div>
+</div><div class="col-sm-2">
+<div class="product-thumb">
+<div class="image">
+	<a href="indexb77e.html?route=product/product&amp;product_id=48">
+		<img src="image/cache/catalog/Data/product/product-11-100x100.jpg" alt="Erat Volutpat" title="Erat Volutpat" class="img-responsive" />
+	</a>
+</div>
+<div>
+	<div class="caption">
+		<h4><a href="indexb77e.html?route=product/product&amp;product_id=48">Erat Volutpat</a></h4>
+		<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et ...</p><p class="price">$100.00																									<span class="price-tax">$100.00</span>																							</p>																			  		</div>
+	</div>
+	</div>
+</div><div class="col-sm-2">
+<div class="product-thumb">
+	<div class="image">
+		<a href="index5e0b.html?route=product/product&amp;product_id=36">
+			<img src="image/cache/catalog/Data/product/product-12-100x100.jpg" alt="Etiam Gravida" title="Etiam Gravida" class="img-responsive" />
+		</a>
+	</div>
+	<div>
+		<div class="caption">
+			<h4><a href="index5e0b.html?route=product/product&amp;product_id=36">Etiam Gravida</a></h4>
+			<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et 
+	..</p>
+    <p class="price">$100.00<span class="price-tax">$100.00</span></p></div>
+	</div>
+	</div>
+</div><div class="col-sm-2">
+<div class="product-thumb">
+	<div class="image">
+		<a href="indexcae8.html?route=product/product&amp;product_id=41">
+			<img src="image/cache/catalog/Data/product/product-8-100x100.jpg" alt="Dail miren tukan" title="Dail miren tukan" class="img-responsive" />
+		</a>
+	</div>
+	<div>
+<div class="caption">
+<h4><a href="indexcae8.html?route=product/product&amp;product_id=41">Dail miren tukan</a></h4>
+<p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et ..</p>
+    <p class="price">$100.00<span class="price-tax">$100.00</span></p></div>
+	</div>
+	</div>
+	</div></div></div><div class="border"></div><div class="row"><div class="col-sm-6"><div class="link">
+        <img src="image/catalog/Data/960x500-2-with-text.png" alt="" style="width: 100%;">
+	</div></div><div class="col-sm-6"><div class="link">
+        <img src="image/catalog/Data/960x500-1-with-text.png" alt="" style="width: 100%;">
+	</div></div></div>												
+	</div>
+</div></li>						
+<li class=" with-sub-menu hover">
+<p class='close-menu'></p><a href="" class="clearfix">
+	<strong><i class="fa fa-plane"></i>About Us
+	</strong>
+	<b class='caret'></b>
+</a>
+</li>						
+<li class=" with-sub-menu hover">
+<p class='close-menu'></p><a href="" class="clearfix">
+<strong><i class="fa fa-plane"></i>Contact Us
+</strong>
+
+
+</a>
+<div class="sub-menu" style="width:100%">
+
+        
+       
+</ul> 
+
+</div>
+</div>
+</div>
+</nav>
+</div>
+
+</div>  
+</div>
+<div class="col-md-2 col-sm-5 col-xs-10 header_right">
+<div class="menu_right cart">
+<a class="search_toggle"><i class="fa fa-search"></i></a><div class="search_outer_toggle">
+<div id="search" class="input-group">
+<input type="text" name="search" value="" placeholder="Search" class="form-control input-lg" />
+<span class="input-group-btn">
+<button type="button" class="btn btn-default btn-lg"><i class="fa fa-search"></i></button>
+</span>
+</div>
+</div>                
+<div class="btn-group manage-links"><button class="btn btn-link dropdown-toggle header-account" data-toggle="dropdown">
+<i class="fa fa fa-user"></i></button>
+<ul class="dropdown-menu dropdown-menu-right">
+<li><a href="indexe223.html?route=account/login">Login</a></li>
+<li><a href="index5502.html?route=account/register">Register</a></li>
+<li><a href="indexe223.html?route=account/wishlist">Wish List (0)</a></li>
+</ul></div><div id="cart" class="btn-group btn-block">
+<button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="btn btn-inverse btn-block btn-lg dropdown-toggle">
+    <i class="fa fa-shopping-cart"></i> 
+    <span id="cart-total" class="hidden-xs">0</span></button>
+<ul class="dropdown-menu pull-right">    <li>
+<p class="text-center">Your shopping cart is empty!</p>
+</li>  </ul>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div id="content" class="content_home"><div class="so-page-builder"><div class="container-fluid page-builder-ltr">
+<div class="rowrow_u803 row-style">	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12col_gjrf col-style">
+    <div id="slideshow0" class="owl-carousel" style="opacity: 1;"> 
+ <div class="item">    <div class="slider-description"><div class="centered-left">
+<p class="animated">New Collection</p>  
+<h1 class="animated">For Hidden Beauty</h1>
+<a class="button slider-btn animated" href="#">Shop Now! <img src="image/catalog/Data/line.png" style="width: 108px;"></a>
+</div></div>    <img src="image/cache/catalog/Data/slider/slide-1-1920x800.png" alt="Banner 1" class="img-responsive" />  
+  </div>  <div class="item">    <div class="slider-description"><div class="centered-left">
+<p class="animated">New Collection</p>  
+<h1 class="animated">For Hidden Beauty</h1>
+<a class="button slider-btn animated" href="#">Shop Now! <img src="image/catalog/Data/line.png" style="width: 108px;"></a>
+</div></div>    <img src="image/cache/catalog/Data/slider/slide-2-1920x800.png" alt="Banner 1" class="img-responsive" /></div></div>
+<script type="text/javascript"><!--
+$('#slideshow0').owlCarousel({
+items: 6,
+autoPlay: 4500,
+singleItem: true,
+navigation: true,
+navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>', '<i class="fa fa-chevron-right fa-5x"></i>'],
+pagination: false,
+transitionStyle: "fade" 
+});
+--></script></div>		
+</div>
+</div><div class="container page-builder-ltr">
+<div class="rowrow_kzvf row-style  featuredseller">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12col_9ams col-style trandingfashioncolumn"><div class="trendingtittle">
+<h2>New Arrivals</h2>
+<hr>
+<p>love clean, fresh design? then our New Nordic look is for you.</p>
+</div></div><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12col_76p6 col-style"><div class="container">
+<div class="section_title">
+<h1 class="fp_carousel-title">Our Products</h1>
+</div>  
+<div id="tabs-0" class="htabs atproduct_tab">
+
+<ul class="nav nav-tabs">
+
+<li class="active"><a href="#tab-featured-0" data-toggle="tab" class="selected">
+    <h5>Featured</h5></a></li><li><a href="#tab-bestseller-0" data-toggle="tab">
+        <h5>Bestseller</h5></a></li><li><a href="#tab-special-0" data-toggle="tab">
+            <h5>Special</h5></a></li>
+</ul>
+</div>
+
+<div class="tab-content">  <div id="tab-featured-0" class="tab-pane active">
+<div class="featured_products_carousel_tab product-item owl-carousel owl-theme" id="featured_products_carousel">
+<div class="item">
+<div class="product-layout">
+<div class="product-thumb transition">
+<div class="image product-image"><a href="purchase1.html?route=product/product&amp;product_id=47"><div class="p-over p-grid-over"> </div>
+<div class="p-over p-grid-over1"> </div>
+<img src="image/cache/catalog/Data/product/product-5-445x590.jpg" alt="Andouille eu" title="Andouille eu" class="img-responsive" />
+</a>
+
+<div class="action">
+<div class="action_inner">
+<div class="button-group">
+<div class="cartbox"><span class="cartbtn" title="Add to Cart" onclick="cart.add('47');"><i class="fa fa-caret-right"></i> Add to Cart</span>
+    <span class="viewbtn"><a href="purchase1.html?route=product/product&amp;product_id=47"><i class="fa fa-search"></i></a></span></div>
+</div>
+</div> 
+</div>
+
+</div>
+
+<div class="caption">
+<h5><a href="purchase1.html?route=product/product&amp;product_id=47">Andouille eu</a><span class="wishlistbtn" onclick="wishlist.add('47');"">
+<i class="fa fa-heart-o=""></i></span></h5><p class="price">$100.00<span class="price-tax">Without tax:$100.00</span> </p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="item">
+<div class="product-layout">
+<div class="product-thumb transition">
+<div class="image product-image"><a href="purchase1.html?route=product/product&amp;product_id=51"><div class="p-over p-grid-over"> </div>
+<div class="p-over p-grid-over1"> </div>
+<img src="image/cache/catalog/Data/product/product-2-445x590.jpg" alt="Accumsan Elit" title="Accumsan Elit" class="img-responsive" />
+</a>
+
+<div class="action">
+<div class="action_inner">
+<div class="button-group">
+<div class="cartbox"><span class="cartbtn" title="Add to Cart" onclick="cart.add('51');"><i class="fa fa-caret-right"></i> Add to Cart</span>
+    <span class="viewbtn"><a href="purchase1.html?route=product/product&amp;product_id=51"><i class="fa fa-search"></i></a></span></div>
+</div>
+</div> 
+</div>
+
+</div>
+
+<div class="caption">
+
+<h5><a href="purchase1.html?route=product/product&amp;product_id=51">Accumsan Elit</a><span class="wishlistbtn" onclick="wishlist.add('51');"">
+<i class="fa fa-heart-o"></i></span>
+</h5><p class="price">$150.00 <span class="price-tax">Without tax:$150.00</span></p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="item">
+<div class="product-layout">
+<div class="product-thumb transition">
+<div class="image product-image">
+    <a href="purchase1.html?route=product/product&amp;product_id=30">
+	
+
+<img src="image/cache/catalog/Data/product/product-4-445x590.jpg" alt="Aliquam Consequat" title="Aliquam Consequat" class="img-responsive" />
+</a>
+
+<div class="action">
+<div class="action_inner">
+<div class="button-group">
+
+<div class="cartbox"><span class="cartbtn" title="Add to Cart" onclick="cart.add('30');"><i class="fa fa-caret-right"></i> Add to Cart</span><span class="viewbtn"><a href="purchase1.html?route=product/product&amp;product_id=30"><i class="fa fa-search"></i></a></span></div>
+</div>
+</div> 
+</div>
+
+</div>
+
+<div class="caption">
+
+<h5><span class="wishlistbtn" onclick="wishlist.add('30');"">
+</span>
+</h5>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="item">
+<div class="product-layout">
+<div class="product-thumb transition">
+<div class="image product-image">
+    <a href="indexbb02.html?route=product/product&amp;product_id=42">
+    <div class="product-label product-label-percentage">Sale</div>	
+<div class="p-over p-grid-over"> </div>
+<div class="p-over p-grid-over1"> </div>
+<img src="image/cache/catalog/Data/product/product-1-445x590.jpg" alt="Accumsan Elit" title="Accumsan Elit" class="img-responsive" />
+</a>
+
+<div class="action">
+<div class="action_inner">
+<div class="button-group">
+
+<div class="cartbox"><span class="cartbtn" title="Add to Cart" onclick="cart.add('42');"><i class="fa fa-caret-right"></i> Add to Cart</span><span class="viewbtn">
+    <a href="indexbb02.html?route=product/product&amp;product_id=42"><i class="fa fa-search"></i></a></span></div>
+</div>
+</div> 
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div> 
+
+
+
+
+</div>
+</div>
+
+</div>
+
+</div>      
+<!--  -->
+
+</div>
+   
+<div class="item">
+<div class="product-layout">
+<div class="product-thumb transition">
+<!-- <div class="image product-image"><a href="indexb77e.html?route=product/product&amp;product_id=48">				<div class="p-over p-grid-over"> </div>
+<div class="p-over p-grid-over1"> </div>
+<img src="image/cache/catalog/Data/product/product-11-445x590.jpg" alt="Erat Volutpat" title="Erat Volutpat" class="img-responsive" />
+</a>
+<div class="action">
+<div class="action_inner">
+<div class="button-group">
+<div class="cartbox"><span class="cartbtn" title="Add to Cart" onclick="cart.add('48');"><i class="fa fa-caret-right"></i> Add to Cart</span><span class="viewbtn"><a href="indexb77e.html?route=product/product&amp;product_id=48"><i class="fa fa-search"></i></a></span></div>
+</div>
+</div> 
+</div>
+
+</div> -->
+
+<div class="caption">
+
+<h5><a href="indexb77e.html?route=product/product&amp;product_id=48">Erat Volutpat</a><span class="wishlistbtn" onclick="wishlist.add('48');""><i class="fa fa-heart-o"></i></span></h5>		        <p class="price">$100.00		          <span class="price-tax">Without tax:$100.00</span>		        </p>
+</div>
+
+</div>
+
+</div>
+
+</div></div>
+</div> <div id="tab-special-0" class="tab-pane">
+<div class="special_products_carousel_tab product-item owl-carousel owl-theme" id="special_products_carousel">      <div class="item">
+<div class="product-layout">
+<div class="product-thumb transition">
+<div class="image product-image"><a href="indexbb02.html?route=product/product&amp;product_id=42">					<div class="product-label product-label-percentage">Sale</div>				<div class="p-over p-grid-over"> </div>
+<div class="p-over p-grid-over1"> </div>
+<img src="image/cache/catalog/Data/product/product-1-445x590.jpg" alt="Accumsan Elit" title="Accumsan Elit" class="img-responsive" />
+</a>
+
+<div class="action">
+<div class="action_inner">
+<div class="button-group">
+<div class="cartbox"><span class="cartbtn" title="Add to Cart" onclick="cart.add('42');"><i class="fa fa-caret-right"></i> Add to Cart</span><span class="viewbtn"><a href="indexbb02.html?route=product/product&amp;product_id=42"><i class="fa fa-search"></i></a></span></div>
+</div>
+</div> 
+</div>
+
+</div>
+
+<div class="caption">
+
+<h5><a href="indexbb02.html?route=product/product&amp;product_id=42">Accumsan Elit</a><span class="wishlistbtn" onclick="wishlist.add('42');""><i class="fa fa-heart-o"></i></span></h5>		        <p class="price">		          <span class="price-new">$90.00</span> <span class="price-old">$100.00</span>		          <span class="price-tax">Without tax:$90.00</span>		        </p>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="item">
+<div class="product-layout">
+<div class="product-thumb transition">
+<div class="image product-image"><a href="index75be.html?route=product/product&amp;product_id=50">					<div class="product-label product-label-percentage">Sale</div>				<div class="p-over p-grid-over"> </div>
+<div class="p-over p-grid-over1"> </div>
+<img src="image/cache/catalog/Data/product/product-3-445x590.jpg" alt="Adipiscing Elit" title="Adipiscing Elit" class="img-responsive" />
+</a>
+
+<div class="action">
+<div class="action_inner">
+<div class="button-group">
+<div class="cartbox"><span class="cartbtn" title="Add to Cart" onclick="cart.add('50');"><i class="fa fa-caret-right"></i> Add to Cart</span><span class="viewbtn"><a href="index75be.html?route=product/product&amp;product_id=50"><i class="fa fa-search"></i></a></span></div>
+</div>
+</div> 
+</div>
+
+</div>
+
+<div class="caption">
+
+<h5><a href="index75be.html?route=product/product&amp;product_id=50">Adipiscing Elit</a><span class="wishlistbtn" onclick="wishlist.add('50');""><i class="fa fa-heart-o"></i></span></h5>		        <p class="price">		          <span class="price-new">$75.00</span> <span class="price-old">$100.00</span>		          <span class="price-tax">Without tax:$75.00</span>		        </p>
+</div>
+
+</div>
+
+</div>
+
+</div>      <div class="item">
+<div class="product-layout">
+<div class="product-thumb transition">
+<div class="image product-image"><a href="indexf073.html?route=product/product&amp;product_id=30">					<div class="product-label product-label-percentage">Sale</div>				<div class="p-over p-grid-over"> </div>
+<div class="p-over p-grid-over1"> </div>
+<img src="image/cache/catalog/Data/product/product-4-445x590.jpg" alt="Aliquam Consequat" title="Aliquam Consequat" class="img-responsive" />
+</a>
+
+<div class="action">
+<div class="action_inner">
+<div class="button-group">
+<div class="cartbox"><span class="cartbtn" title="Add to Cart" onclick="cart.add('30');"><i class="fa fa-caret-right"></i> Add to Cart</span><span class="viewbtn"><a href="indexf073.html?route=product/product&amp;product_id=30"><i class="fa fa-search"></i></a></span></div>
+</div>
+</div> 
+</div>
+
+</div>
+
+<div class="caption">
+
+<h5><a href="indexf073.html?route=product/product&amp;product_id=30">Aliquam Consequat</a><span class="wishlistbtn" onclick="wishlist.add('30');""><i class="fa fa-heart-o"></i></span></h5>		        <p class="price">		          <span class="price-new">$80.00</span> <span class="price-old">$100.00</span>		          <span class="price-tax">Without tax:$80.00</span>		        </p>
+</div>
+
+</div>
+
+</div>
+
+</div>      <div class="item">
+<div class="product-layout">
+<div class="product-thumb transition">
+<div class="image product-image"><a href="index6a4d.html?route=product/product&amp;product_id=33">					<div class="product-label product-label-percentage">Sale</div>				<div class="p-over p-grid-over"> </div>
+<div class="p-over p-grid-over1"> </div>
+<img src="image/cache/catalog/Data/product/product-4-445x590.jpg" alt="Letraset Sheets" title="Letraset Sheets" class="img-responsive" />
+</a>
+
+<div class="action">
+<div class="action_inner">
+<div class="button-group">
+<div class="cartbox"><span class="cartbtn" title="Add to Cart" onclick="cart.add('33');"><i class="fa fa-caret-right"></i> Add to Cart</span><span class="viewbtn"><a href="index6a4d.html?route=product/product&amp;product_id=33"><i class="fa fa-search"></i></a></span></div>
+</div>
+</div> 
+</div>
+
+</div>
+
+<div class="caption">
+
+<h5><a href="index6a4d.html?route=product/product&amp;product_id=33">Letraset Sheets</a><span class="wishlistbtn" onclick="wishlist.add('33');""><i class="fa fa-heart-o"></i></span></h5>		        <p class="price">		          <span class="price-new">$95.00</span> <span class="price-old">$200.00</span>		          <span class="price-tax">Without tax:$95.00</span>		        </p>
+</div>
+
+</div>
+
+</div>
+
+</div>		
+</div>
+</div></div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+$('.featured_products_carousel_tab').owlCarousel({
+items: 4, 
+itemsDesktop : [1199,3],
+itemsDesktopSmall : [979,3],
+autoWidth:true,
+pagination: false,
+navigation:true,
+navigationText: [
+"<i class='fa fa-angle-left'></i>",
+"<i class='fa fa-angle-right'></i>"
+],
+});
+
+$('.latest_products_carousel_tab').owlCarousel({
+items: 4, 
+itemsDesktop : [1199,3],
+itemsDesktopSmall : [979,3],
+autoWidth:true,
+pagination: false,
+navigation:true,
+navigationText: [
+"<i class='fa fa-angle-left'></i>",
+"<i class='fa fa-angle-right'></i>"
+],
+});
+
+$('.bestseller_products_carousel_tab').owlCarousel({
+items: 4, 
+itemsDesktop : [1199,3],
+itemsDesktopSmall : [979,3],
+autoWidth:true,
+pagination: false,
+navigation:true,
+navigationText: [
+"<i class='fa fa-angle-left'></i>",
+"<i class='fa fa-angle-right'></i>"
+],
+});
+
+$('.special_products_carousel_tab').owlCarousel({
+items: 4, 
+itemsDesktop : [1199,3],
+itemsDesktopSmall : [979,3],
+autoWidth:true,
+pagination: false,
+navigation:true,
+navigationText: [
+"<i class='fa fa-angle-left'></i>",
+"<i class='fa fa-angle-right'></i>"
+],
+});
+
+
+});
+
+</script>
+
+<div class="clear"></div>						
+</div>		
+</div>
+</div>			<div class="container-fluid page-builder-ltr">
+<div class="rowrow_d5tm row-style"><div class="col-lg-4 col-md-4 col-sm-4 col-xs-12col_6dy8 col-style"><div class="zoomeffect"><img src="image/catalog/Data/promo-3-640x480.png" style="width: 100%;"></div>
+<div class="centered-hover-box">
+<a href="#"><h1>Men Collection</h1></a>
+</div>
+</div>	
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12col_l07o col-style"><div class="zoomeffect"><img src="image/catalog/Data/promo-2-640x480.png" style="width: 100%;"></div>
+<div class="centered-hover-box">
+<a href="#"><h1>Women Collection</h1></a>
+</div>						
+</div>						
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12col_fafm col-style"><div class="zoomeffect"><img src="image/catalog/Data/promo-1-640x480.png" style="width: 100%;"></div>
+<div class="centered-hover-box">
+<a href="#"><h1>Winter Collection</h1></a>
+</div>						
+</div>		
+</div>
+</div>			
+<div class="container-fluid page-builder-ltr">
+<div class="rowrow_ulmi row-style hideme"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12col_ddqk col-style"><div class="zoomeffect"><img src="image/catalog/Data/1920x500.png" style="width: 100%;"></div>
+<div class="promoimagetext fullwidth">
+<h4>For Hidden Beauty</h4>
+<h6>Love Clean, Fresh Design? Then Our New <br>Nordic Look Is For You.</h6>
+<a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Shop Now</a>
+</div>						
+</div>		
+</div>
+</div>
+<div class="container page-builder-ltr">
+<div class="rowrow_4esu row-style  topseller">								
+</div>
+</div>	
+</div>
+<footer>
+<div class="container footer_center">
+
+<div class="footer_bottom_outer">
+<div class="container">
+<div class="row">
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="copyright">
+<p>Stella Couture &copy; 2021.</a></p>
+</div>
+</div>     
+</div>       
+</div>
+</div>
+</div>
+</footer>
+</body>
+</html>

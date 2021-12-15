@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Portfolio Details - Personal Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link th:href="@{//localhost:3000/assets/img/favicon.png}" rel="icon">
+    <link th:href="@{//localhost:3000/assets/img/apple-touch-icon.png}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link th:href="@{//localhost:3000/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{//localhost:3000/assets/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+    <link th:href="@{//localhost:3000/assets/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet">
+    <link th:href="@{//localhost:3000/assets/vendor/glightbox/css/glightbox.min.css}" rel="stylesheet">
+    <link th:href="@{//localhost:3000/assets/vendor/remixicon/remixicon.css}" rel="stylesheet">
+    <link th:href="@{//localhost:3000/assets/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link th:href="@{//localhost:3000/assets/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<div th:with="error=${session.message}">
+    <div th:if="${error} != null">
+        <div class="alert alert-success" role="alert">
+            <div th:text="${error}"></div>
+        </div>
+    </div>
+</div>
+<main id="main">
+    <div id="portfolio-details" class="portfolio-details">
+        <h2 style="text-align: center; margin-bottom: 40px">EDIT POST</h2><br/>
+        <button type="button" th:onclick="'closeWin('+${1}+')'" class="close btn btn-danger" aria-label="Close" style="float: right">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="container">
+            <form th:action="@{/editPostProcessing}" th:object="${products}" method="POST" role="form" enctype="multipart/form-data" >
+                <div class="row">
+                    <div class="col-md-6 form-group" style="margin-bottom: 20px">
+                        <label for="name">Product Name</label><br/>
+                        <input
+                                type="text"
+                                th:field="*{name}"
+                                th:value="${shop.getName()}"
+                                name="name"
+                                class="form-control"
+                                id="name"
+                                placeholder="Product Name"
+                                required
+                        />
+                        <input style="display: none" name="id" th:value="${shop.getId()}"/>
+                    </div>
+                    <div class="col-md-6 form-group" style="margin-bottom: 20px">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01"
+                            >Categories of Products</label
+                            >
+                        </div>
+                        <br/>
+                        <select class="custom-select" id="inputGroupSelect01" th:field="*{category}">
+                            <option name="category" th:value="${'Choose'}" selected>Choose...</option>
+                            <option name="category" th:value="${'MEN WEAR'}">MEN WEAR</option>
+                            <option name="category" th:value="${'WOMEN WEAR'}">WOMEN WEAR</option>
+                            <option name="category" th:value="${'COSMETICS'}">COSMETICS</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 form-group" style="margin-bottom: 20px">
+                        <label for="count">Product Quantity</label><br/>
+                        <input
+                                type="number"
+                                th:field="*{quantity}"
+                                th:value="${shop.getQuantity()}"
+                                name="name"
+                                class="form-control"
+                                id="count"
+                                placeholder="Product Name"
+                                required
+                        />
+                    </div>
+
+                    <div class="col-md-6 form-group" style="margin-bottom: 20px">
+                        <label for="price">Product Price</label><br/>
+                        <input
+                                type="number"
+                                th:field="*{price}"
+                                th:value="${shop.getPrice()}"
+                                name="name"
+                                class="form-control"
+                                id="price"
+                                placeholder="Product Price"
+                                required
+                        />
+                    </div><br/>
+                    <div class="col-md-6 form-group" style="margin-bottom: 20px">
+                        <label for="file_img">Upload Image of the product</label><br/>
+                        <input
+                                type="file"
+                                name="file"
+                                class="form-control"
+                                id="file_img"
+                        />
+                    </div><br/>
+                    <div class="col-md-6 form-group" style="margin-bottom: 20px">
+                        <label for="description">The Product Description</label><br/>
+                        <textarea
+                                name="description"
+                                th:field="*{description}"
+                                th:value="${shop.getDescription()}"
+                                id="description"
+                                rows="5"
+                                cols="55"
+                        ></textarea>
+                    </div>
+                    <br/>
+                </div><br/>
+                <button class="btn btn-success" type="submit" style="margin: 0px auto; border: 1px solid"> EDIT </button>
+            </form>
+        </div>
+    </div>
+</main>
+<!-- Vendor JS Files -->
+<script th:src="@{//localhost:3000/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{//localhost:3000/assets/vendor/glightbox/js/glightbox.min.js}"></script>
+<script th:src="@{//localhost:3000/assets/vendor/isotope-layout/isotope.pkgd.min.js}"></script>
+<script th:src="@{//localhost:3000/assets/vendor/php-email-form/validate.js}"></script>
+<script th:src="@{//localhost:3000/assets/vendor/purecounter/purecounter.js}"></script>
+<script th:src="@{//localhost:3000/assets/vendor/swiper/swiper-bundle.min.js}"></script>
+<script th:src="@{//localhost:3000/assets/vendor/waypoints/noframework.waypoints.js}"></script>
+
+<!-- Template Main JS File -->
+<script th:src="@{//localhost:3000/assets/js/main.js}"></script>
+<script>
+    function add(id){
+        let data = document.getElementById("count").innerText;
+        let newCount = Number(data);
+        newCount++;
+        document.getElementById("count").innerText = newCount.toString();
+        window.location.href = "/add_to_cart/"+id;
+    }
+</script>
+<script>
+    function closeWin(id){
+        window.location.href = "/home";
+    }
+</script>
+</body>
+
+</html>
