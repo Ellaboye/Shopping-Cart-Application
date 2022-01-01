@@ -13,7 +13,8 @@
     <link th:href="@{//localhost:3000/assets/img/apple-touch-icon.png}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link th:href="@{//localhost:3000/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
@@ -37,11 +38,13 @@
 <main id="main">
     <div id="portfolio-details" class="portfolio-details">
         <h2 style="text-align: center; margin-bottom: 40px">EDIT POST</h2><br/>
-        <button type="button" th:onclick="'closeWin('+${1}+')'" class="close btn btn-danger" aria-label="Close" style="float: right">
+        <button type="button" th:onclick="'closeWin('+${1}+')'" class="close btn btn-danger" aria-label="Close"
+                style="float: right">
             <span aria-hidden="true">&times;</span>
         </button>
         <div class="container">
-            <form th:action="@{/editPostProcessing}" th:object="${products}" method="POST" role="form" enctype="multipart/form-data" >
+            <form th:action="@{/editPostProcessing}" th:object="${products}" method="POST" role="form"
+                  enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-6 form-group" style="margin-bottom: 20px">
                         <label for="name">Product Name</label><br/>
@@ -97,7 +100,8 @@
                                 placeholder="Product Price"
                                 required
                         />
-                    </div><br/>
+                    </div>
+                    <br/>
                     <div class="col-md-6 form-group" style="margin-bottom: 20px">
                         <label for="file_img">Upload Image of the product</label><br/>
                         <input
@@ -106,7 +110,8 @@
                                 class="form-control"
                                 id="file_img"
                         />
-                    </div><br/>
+                    </div>
+                    <br/>
                     <div class="col-md-6 form-group" style="margin-bottom: 20px">
                         <label for="description">The Product Description</label><br/>
                         <textarea
@@ -119,34 +124,35 @@
                         ></textarea>
                     </div>
                     <br/>
-                </div><br/>
-                <button class="btn btn-success" type="submit" style="margin: 0px auto; border: 1px solid"> EDIT </button>
+                </div>
+                <br/>
+                <button class="btn btn-success" type="submit" style="margin: 0px auto; border: 1px solid"> EDIT</button>
             </form>
         </div>
     </div>
 </main>
 <!-- Vendor JS Files -->
-<script th:src="@{//localhost:3000/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{//localhost:3000/assets/vendor/glightbox/js/glightbox.min.js}"></script>
-<script th:src="@{//localhost:3000/assets/vendor/isotope-layout/isotope.pkgd.min.js}"></script>
-<script th:src="@{//localhost:3000/assets/vendor/php-email-form/validate.js}"></script>
-<script th:src="@{//localhost:3000/assets/vendor/purecounter/purecounter.js}"></script>
-<script th:src="@{//localhost:3000/assets/vendor/swiper/swiper-bundle.min.js}"></script>
-<script th:src="@{//localhost:3000/assets/vendor/waypoints/noframework.waypoints.js}"></script>
+<script th:src="@{/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/assets/vendor/glightbox/js/glightbox.min.js}"></script>
+<script th:src="@{/assets/vendor/isotope-layout/isotope.pkgd.min.js}"></script>
+<script th:src="@{/assets/vendor/php-email-form/validate.js}"></script>
+<script th:src="@{/assets/vendor/purecounter/purecounter.js}"></script>
+<script th:src="@{/assets/vendor/swiper/swiper-bundle.min.js}"></script>
+<script th:src="@{/assets/vendor/waypoints/noframework.waypoints.js}"></script>
 
 <!-- Template Main JS File -->
-<script th:src="@{//localhost:3000/assets/js/main.js}"></script>
+<script th:src="@{/assets/js/main.js}"></script>
 <script>
-    function add(id){
+    function add(id) {
         let data = document.getElementById("count").innerText;
         let newCount = Number(data);
         newCount++;
         document.getElementById("count").innerText = newCount.toString();
-        window.location.href = "/add_to_cart/"+id;
+        window.location.href = "/add_to_cart/" + id;
     }
 </script>
 <script>
-    function closeWin(id){
+    function closeWin(id) {
         window.location.href = "/home";
     }
 </script>

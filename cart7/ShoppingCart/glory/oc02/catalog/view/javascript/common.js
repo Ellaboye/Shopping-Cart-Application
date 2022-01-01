@@ -1,1793 +1,1166 @@
 function getURLVar(key) {
-	var value = [];
+    var value = [];
 
-	var query = String(document.location).split('?');
-
-
-	if (query[1]) {
+    var query = String(document.location).split('?');
 
 
-		var part = query[1].split('&');
-
-		for (i = 0; i < part.length; i++) {
-
-		var data = part[i].split('=');
+    if (query[1]) {
 
 
-			if (data[0] && data[1]) {
+        var part = query[1].split('&');
 
-				value[data[0]] = data[1];
+        for (i = 0; i < part.length; i++) {
 
-
-			}
-
-
-		}
+            var data = part[i].split('=');
 
 
-		if (value[key]) {
+            if (data[0] && data[1]) {
+
+                value[data[0]] = data[1];
 
 
-			return value[key];
+            }
 
 
-		} else {
+        }
 
 
-			return '';
+        if (value[key]) {
 
 
-		}
+            return value[key];
 
 
-	}
+        } else {
 
+
+            return '';
+
+
+        }
+
+
+    }
 
 
 }
 
 
-$(document).ready(function() {
+$(document).ready(function () {
 
-	// Highlight any found errors
+    // Highlight any found errors
 
-	$('.text-danger').each(function() {
+    $('.text-danger').each(function () {
 
-		var element = $(this).parent().parent();
+        var element = $(this).parent().parent();
 
-		if (element.hasClass('form-group')) {
+        if (element.hasClass('form-group')) {
 
-			element.addClass('has-error');
+            element.addClass('has-error');
 
-		}
+        }
 
-	});
+    });
 
-	// Currency
+    // Currency
 
-	$('#form-currency .currency-select').on('click', function(e) {
+    $('#form-currency .currency-select').on('click', function (e) {
 
-		e.preventDefault();
+        e.preventDefault();
 
-		$('#form-currency input[name=\'code\']').attr('value', $(this).attr('name'));
+        $('#form-currency input[name=\'code\']').attr('value', $(this).attr('name'));
 
 
-		$('#form-currency').submit();
+        $('#form-currency').submit();
 
-	});
+    });
 
-	// Language
+    // Language
 
 
+    $('#form-language a').on('click', function (e) {
 
-	$('#form-language a').on('click', function(e) {
+        e.preventDefault();
 
-		e.preventDefault();
+        $('#form-language input[name=\'code\']').attr('value', $(this).attr('href'));
 
-		$('#form-language input[name=\'code\']').attr('value', $(this).attr('href'));
 
+        $('#form-language').submit();
 
-		$('#form-language').submit();
 
+    });
 
-	});
+    /* Search */
 
-	/* Search */
 
+    $('#search input[name=\'search\']').parent().find('button').on('click', function () {
 
 
-	$('#search input[name=\'search\']').parent().find('button').on('click', function() {
+        url = $('base').attr('href') + 'index.php?route=product/search';
 
 
-		url = $('base').attr('href') + 'index.php?route=product/search';
+        var value = $('header input[name=\'search\']').val();
 
+        if (value) {
+            url += '&search=' + encodeURIComponent(value);
 
-		var value = $('header input[name=\'search\']').val();
+        }
 
-		if (value) {
-		url += '&search=' + encodeURIComponent(value);
 
-		}
+        location = url;
 
 
-		location = url;
+    });
 
 
-	});
+    $('#search input[name=\'search\']').on('keydown', function (e) {
 
 
+        if (e.keyCode == 13) {
 
-	$('#search input[name=\'search\']').on('keydown', function(e) {
 
+            $('header input[name=\'search\']').parent().find('button').trigger('click');
 
 
-		if (e.keyCode == 13) {
+        }
 
 
+    });
 
-			$('header input[name=\'search\']').parent().find('button').trigger('click');
 
+    // Menu
 
 
-		}
+    $('#menu .dropdown-menu').each(function () {
 
 
+        var menu = $('#menu').offset();
 
-	});
 
+        var dropdown = $(this).parent().offset();
 
 
+        var i = (dropdown.left + $(this).outerWidth()) - (menu.left + $('#menu').outerWidth());
 
 
+        if (i > 0) {
 
 
-	// Menu
+            $(this).css('margin-left', '-' + (i + 5) + 'px');
 
 
+        }
 
-	$('#menu .dropdown-menu').each(function() {
 
+    });
 
 
-		var menu = $('#menu').offset();
+    // Product List
 
 
+    $('#list-view').click(function () {
 
-		var dropdown = $(this).parent().offset();
 
+        $('#content .product-grid > .clearfix').remove();
 
 
+        //$('#content .product-layout').attr('class', 'product-layout product-list col-xs-12');
 
 
+        $('#content .row > .product-grid').attr('class', 'product-layout product-list product-category col-xs-12');
 
 
-		var i = (dropdown.left + $(this).outerWidth()) - (menu.left + $('#menu').outerWidth());
+        localStorage.setItem('display', 'list');
 
 
+    });
 
 
+    // Product Grid
 
 
+    $('#grid-view').click(function () {
 
-		if (i > 0) {
 
+        // What a shame bootstrap does not take into account dynamically loaded columns
 
 
-			$(this).css('margin-left', '-' + (i + 5) + 'px');
+        cols = $('#column-right, #column-left').length;
 
 
+        if (cols == 2) {
 
-		}
 
+            $('#content .product-list').attr('class', 'product-layout product-grid product-category product-item col-lg-6 col-md-6 col-sm-12 col-xs-12');
 
 
-	});
+        } else if (cols == 1) {
 
 
+            $('#content .product-list').attr('class', 'product-layout product-grid product-category product-item col-lg-4 col-md-4 col-sm-6 col-xs-12');
 
 
+        } else {
 
 
+            $('#content .product-list').attr('class', 'product-layout product-grid product-category product-item col-lg-3 col-md-3 col-sm-6 col-xs-12');
 
-	// Product List
 
+        }
 
 
-	$('#list-view').click(function() {
+        localStorage.setItem('display', 'grid');
 
 
+    });
 
-		$('#content .product-grid > .clearfix').remove();
 
+    if (localStorage.getItem('display') == 'list') {
 
 
+        $('#list-view').trigger('click');
 
 
+    } else {
 
 
-		//$('#content .product-layout').attr('class', 'product-layout product-list col-xs-12');
+        $('#grid-view').trigger('click');
 
 
+    }
 
-		$('#content .row > .product-grid').attr('class', 'product-layout product-list product-category col-xs-12');
 
+    // Checkout
 
 
+    $(document).on('keydown', '#collapse-checkout-option input[name=\'email\'], #collapse-checkout-option input[name=\'password\']', function (e) {
 
 
+        if (e.keyCode == 13) {
 
 
-		localStorage.setItem('display', 'list');
+            $('#collapse-checkout-option #button-login').trigger('click');
 
 
+        }
 
-	});
 
+    });
 
 
+    // tooltips on hover
 
 
+    $('[data-toggle=\'tooltip\']').tooltip({container: 'body'});
 
 
-	// Product Grid
+    // Makes tooltips work on ajax generated content
 
 
+    $(document).ajaxStop(function () {
 
-	$('#grid-view').click(function() {
 
+        $('[data-toggle=\'tooltip\']').tooltip({container: 'body'});
 
 
-		// What a shame bootstrap does not take into account dynamically loaded columns
-
-
-
-		cols = $('#column-right, #column-left').length;
-
-
-
-
-
-
-
-		if (cols == 2) {
-
-
-
-			$('#content .product-list').attr('class', 'product-layout product-grid product-category product-item col-lg-6 col-md-6 col-sm-12 col-xs-12');
-
-
-
-		} else if (cols == 1) {
-
-
-
-			$('#content .product-list').attr('class', 'product-layout product-grid product-category product-item col-lg-4 col-md-4 col-sm-6 col-xs-12');
-
-
-
-		} else {
-
-
-
-			$('#content .product-list').attr('class', 'product-layout product-grid product-category product-item col-lg-3 col-md-3 col-sm-6 col-xs-12');
-
-
-
-		}
-
-
-
-
-
-
-
-		 localStorage.setItem('display', 'grid');
-
-
-
-	});
-
-
-
-
-
-
-
-	if (localStorage.getItem('display') == 'list') {
-
-
-
-		$('#list-view').trigger('click');
-
-
-
-	} else {
-
-
-
-		$('#grid-view').trigger('click');
-
-
-
-	}
-
-
-
-
-
-
-
-	// Checkout
-
-
-
-	$(document).on('keydown', '#collapse-checkout-option input[name=\'email\'], #collapse-checkout-option input[name=\'password\']', function(e) {
-
-
-
-		if (e.keyCode == 13) {
-
-
-
-			$('#collapse-checkout-option #button-login').trigger('click');
-
-
-
-		}
-
-
-
-	});
-
-
-
-
-
-
-
-	// tooltips on hover
-
-
-
-	$('[data-toggle=\'tooltip\']').tooltip({container: 'body'});
-
-
-
-
-
-
-
-	// Makes tooltips work on ajax generated content
-
-
-
-	$(document).ajaxStop(function() {
-
-
-
-		$('[data-toggle=\'tooltip\']').tooltip({container: 'body'});
-
-
-
-	});
-
+    });
 
 
 });
-
-
-
-
-
 
 
 // Cart add remove functions
 
 
-
 var cart = {
 
 
+    'add': function (product_id, quantity) {
 
-	'add': function(product_id, quantity) {
 
+        $.ajax({
 
 
-		$.ajax({
+            url: 'index.php?route=checkout/cart/add',
 
 
+            type: 'post',
 
-			url: 'index.php?route=checkout/cart/add',
 
+            data: 'product_id=' + product_id + '&quantity=' + (typeof (quantity) != 'undefined' ? quantity : 1),
 
 
-			type: 'post',
+            dataType: 'json',
 
 
+            beforeSend: function () {
 
-			data: 'product_id=' + product_id + '&quantity=' + (typeof(quantity) != 'undefined' ? quantity : 1),
 
+                $('#cart > button').button('loading');
 
 
-			dataType: 'json',
+            },
 
 
+            complete: function () {
 
-			beforeSend: function() {
 
+                $('#cart > button').button('reset');
 
 
-				$('#cart > button').button('loading');
+            },
 
 
+            success: function (json) {
 
-			},
 
+                $('.alert, .text-danger').remove();
 
 
-			complete: function() {
+                if (json['redirect']) {
 
 
+                    location = json['redirect'];
 
-				$('#cart > button').button('reset');
 
+                }
 
 
-			},
+                if (json['success']) {
 
 
+                    $('#content').parent().before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 
-			success: function(json) {
 
+                    // Need to set timeout otherwise it wont update the total
 
 
-				$('.alert, .text-danger').remove();
+                    setTimeout(function () {
 
 
+                        $('#cart > button').html('<i class="fa fa-shopping-bag"></i> <span id="cart-total">' + json['total'] + '</span>');
 
 
+                    }, 100);
 
 
+                    $('html, body').animate({scrollTop: 0}, 'slow');
 
-				if (json['redirect']) {
 
+                    $('#cart > ul').load('index.php?route=common/cart/info ul li');
 
 
-					location = json['redirect'];
+                }
 
 
+            },
 
-				}
 
+            error: function (xhr, ajaxOptions, thrownError) {
 
 
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 
 
+            }
 
 
-				if (json['success']) {
+        });
 
 
+    },
 
-					$('#content').parent().before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 
+    'update': function (key, quantity) {
 
 
+        $.ajax({
 
 
+            url: 'index.php?route=checkout/cart/edit',
 
 
-					// Need to set timeout otherwise it wont update the total
+            type: 'post',
 
 
+            data: 'key=' + key + '&quantity=' + (typeof (quantity) != 'undefined' ? quantity : 1),
 
-					setTimeout(function () {
 
+            dataType: 'json',
 
 
-						$('#cart > button').html('<i class="fa fa-shopping-bag"></i> <span id="cart-total">' + json['total'] + '</span>');
+            beforeSend: function () {
 
 
+                $('#cart > button').button('loading');
 
-					}, 100);
 
+            },
 
 
+            complete: function () {
 
 
+                $('#cart > button').button('reset');
 
 
-					$('html, body').animate({ scrollTop: 0 }, 'slow');
+            },
 
 
+            success: function (json) {
 
 
+                // Need to set timeout otherwise it wont update the total
 
 
+                setTimeout(function () {
 
-					$('#cart > ul').load('index.php?route=common/cart/info ul li');
 
+                    $('#cart > button').html('<i class="fa fa-shopping-bag"></i> <span id="cart-total">' + json['total'] + '</span>');
 
 
-				}
+                }, 100);
 
 
+                if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
 
-			},
 
+                    location = 'index.php?route=checkout/cart';
 
 
-	        error: function(xhr, ajaxOptions, thrownError) {
+                } else {
 
 
+                    $('#cart > ul').load('index.php?route=common/cart/info ul li');
 
-	            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 
+                }
 
 
-	        }
+            },
 
 
+            error: function (xhr, ajaxOptions, thrownError) {
 
-		});
 
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 
 
-	},
+            }
 
 
+        });
 
-	'update': function(key, quantity) {
 
+    },
 
 
-		$.ajax({
+    'remove': function (key) {
 
 
+        $.ajax({
 
-			url: 'index.php?route=checkout/cart/edit',
 
+            url: 'index.php?route=checkout/cart/remove',
 
 
-			type: 'post',
+            type: 'post',
 
 
+            data: 'key=' + key,
 
-			data: 'key=' + key + '&quantity=' + (typeof(quantity) != 'undefined' ? quantity : 1),
 
+            dataType: 'json',
 
 
-			dataType: 'json',
+            beforeSend: function () {
 
 
+                $('#cart > button').button('loading');
 
-			beforeSend: function() {
 
+            },
 
 
-				$('#cart > button').button('loading');
+            complete: function () {
 
 
+                $('#cart > button').button('reset');
 
-			},
 
+            },
 
 
-			complete: function() {
+            success: function (json) {
 
 
+                // Need to set timeout otherwise it wont update the total
 
-				$('#cart > button').button('reset');
 
+                setTimeout(function () {
 
 
-			},
+                    $('#cart > button').html('<i class="fa fa-shopping-bag"></i> <span id="cart-total">' + json['total'] + '</span>');
 
 
+                }, 100);
 
-			success: function(json) {
 
+                if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
 
 
-				// Need to set timeout otherwise it wont update the total
+                    location = 'index.php?route=checkout/cart';
 
 
+                } else {
 
-				setTimeout(function () {
 
+                    $('#cart > ul').load('index.php?route=common/cart/info ul li');
 
 
-					$('#cart > button').html('<i class="fa fa-shopping-bag"></i> <span id="cart-total">' + json['total'] + '</span>');
-					
+                }
 
 
+            },
 
-				}, 100);
 
+            error: function (xhr, ajaxOptions, thrownError) {
 
 
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 
 
+            }
 
 
-				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
+        });
 
 
-
-					location = 'index.php?route=checkout/cart';
-
-
-
-				} else {
-
-
-
-					$('#cart > ul').load('index.php?route=common/cart/info ul li');
-
-
-
-				}
-
-
-
-			},
-
-
-
-	        error: function(xhr, ajaxOptions, thrownError) {
-
-
-
-	            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-
-
-
-	        }
-
-
-
-		});
-
-
-
-	},
-
-
-
-	'remove': function(key) {
-
-
-
-		$.ajax({
-
-
-
-			url: 'index.php?route=checkout/cart/remove',
-
-
-
-			type: 'post',
-
-
-
-			data: 'key=' + key,
-
-
-
-			dataType: 'json',
-
-
-
-			beforeSend: function() {
-
-
-
-				$('#cart > button').button('loading');
-
-
-
-			},
-
-
-
-			complete: function() {
-
-
-
-				$('#cart > button').button('reset');
-
-
-
-			},
-
-
-
-			success: function(json) {
-
-
-
-				// Need to set timeout otherwise it wont update the total
-
-
-
-				setTimeout(function () {
-
-
-
-					$('#cart > button').html('<i class="fa fa-shopping-bag"></i> <span id="cart-total">' + json['total'] + '</span>');
-
-
-
-				}, 100);
-
-
-
-
-
-
-
-				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
-
-
-
-					location = 'index.php?route=checkout/cart';
-
-
-
-				} else {
-
-
-
-					$('#cart > ul').load('index.php?route=common/cart/info ul li');
-
-
-
-				}
-
-
-
-			},
-
-
-
-	        error: function(xhr, ajaxOptions, thrownError) {
-
-
-
-	            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-
-
-
-	        }
-
-
-
-		});
-
-
-
-	}
-
+    }
 
 
 }
-
-
-
-
-
 
 
 var voucher = {
 
 
+    'add': function () {
 
-	'add': function() {
 
+    },
 
 
+    'remove': function (key) {
 
 
+        $.ajax({
 
 
-	},
+            url: 'index.php?route=checkout/cart/remove',
 
 
+            type: 'post',
 
-	'remove': function(key) {
 
+            data: 'key=' + key,
 
 
-		$.ajax({
+            dataType: 'json',
 
 
+            beforeSend: function () {
 
-			url: 'index.php?route=checkout/cart/remove',
 
+                $('#cart > button').button('loading');
 
 
-			type: 'post',
+            },
 
 
+            complete: function () {
 
-			data: 'key=' + key,
 
+                $('#cart > button').button('reset');
 
 
-			dataType: 'json',
+            },
 
 
+            success: function (json) {
 
-			beforeSend: function() {
 
+                // Need to set timeout otherwise it wont update the total
 
 
-				$('#cart > button').button('loading');
+                setTimeout(function () {
 
 
+                    $('#cart > button').html('<i class="fa fa-shopping-bag"></i> <span id="cart-total">' + json['total'] + '</span>');
 
-			},
 
+                }, 100);
 
 
-			complete: function() {
+                if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
 
 
+                    location = 'index.php?route=checkout/cart';
 
-				$('#cart > button').button('reset');
 
+                } else {
 
 
-			},
+                    $('#cart > ul').load('index.php?route=common/cart/info ul li');
 
 
+                }
 
-			success: function(json) {
 
+            },
 
 
-				// Need to set timeout otherwise it wont update the total
+            error: function (xhr, ajaxOptions, thrownError) {
 
 
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 
-				setTimeout(function () {
 
+            }
 
 
-					$('#cart > button').html('<i class="fa fa-shopping-bag"></i> <span id="cart-total">' + json['total'] + '</span>');
+        });
 
 
-
-				}, 100);
-
-
-
-
-
-
-
-				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
-
-
-
-					location = 'index.php?route=checkout/cart';
-
-
-
-				} else {
-
-
-
-					$('#cart > ul').load('index.php?route=common/cart/info ul li');
-
-
-
-				}
-
-
-
-			},
-
-
-
-	        error: function(xhr, ajaxOptions, thrownError) {
-
-
-
-	            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-
-
-
-	        }
-
-
-
-		});
-
-
-
-	}
-
+    }
 
 
 }
-
-
-
-
-
 
 
 var wishlist = {
 
 
+    'add': function (product_id) {
 
-	'add': function(product_id) {
 
+        $.ajax({
 
 
-		$.ajax({
+            url: 'index.php?route=account/wishlist/add',
 
 
+            type: 'post',
 
-			url: 'index.php?route=account/wishlist/add',
 
+            data: 'product_id=' + product_id,
 
 
-			type: 'post',
+            dataType: 'json',
 
 
+            success: function (json) {
 
-			data: 'product_id=' + product_id,
 
+                $('.alert').remove();
 
 
-			dataType: 'json',
+                if (json['redirect']) {
 
 
+                    location = json['redirect'];
 
-			success: function(json) {
 
+                }
 
 
-				$('.alert').remove();
+                if (json['success']) {
 
 
+                    $('#content').parent().before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 
 
+                }
 
 
+                $('#wishlist-total span').html(json['total']);
 
-				if (json['redirect']) {
 
+                $('#wishlist-total').attr('title', json['total']);
 
 
-					location = json['redirect'];
+                $('html, body').animate({scrollTop: 0}, 'slow');
 
 
+            },
 
-				}
 
+            error: function (xhr, ajaxOptions, thrownError) {
 
 
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 
 
+            }
 
 
-				if (json['success']) {
+        });
 
 
+    },
 
-					$('#content').parent().before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 
+    'remove': function () {
 
 
-				}
-
-
-
-
-
-
-
-				$('#wishlist-total span').html(json['total']);
-
-
-
-				$('#wishlist-total').attr('title', json['total']);
-
-
-
-
-
-
-
-				$('html, body').animate({ scrollTop: 0 }, 'slow');
-
-
-
-			},
-
-
-
-	        error: function(xhr, ajaxOptions, thrownError) {
-
-
-
-	            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-
-
-
-	        }
-
-
-
-		});
-
-
-
-	},
-
-
-
-	'remove': function() {
-
-
-
-
-
-
-
-	}
-
+    }
 
 
 }
-
-
-
-
-
 
 
 var compare = {
 
 
+    'add': function (product_id) {
 
-	'add': function(product_id) {
 
+        $.ajax({
 
 
-		$.ajax({
+            url: 'index.php?route=product/compare/add',
 
 
+            type: 'post',
 
-			url: 'index.php?route=product/compare/add',
 
+            data: 'product_id=' + product_id,
 
 
-			type: 'post',
+            dataType: 'json',
 
 
+            success: function (json) {
 
-			data: 'product_id=' + product_id,
 
+                $('.alert').remove();
 
 
-			dataType: 'json',
+                if (json['success']) {
 
 
+                    $('#content').parent().before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 
-			success: function(json) {
 
+                    $('#compare-total').html(json['total']);
 
 
-				$('.alert').remove();
+                    $('html, body').animate({scrollTop: 0}, 'slow');
 
 
+                }
 
 
+            },
 
 
+            error: function (xhr, ajaxOptions, thrownError) {
 
-				if (json['success']) {
 
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 
 
-					$('#content').parent().before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+            }
 
 
+        });
 
 
+    },
 
 
+    'remove': function () {
 
-					$('#compare-total').html(json['total']);
 
-
-
-
-
-
-
-					$('html, body').animate({ scrollTop: 0 }, 'slow');
-
-
-
-				}
-
-
-
-			},
-
-
-
-	        error: function(xhr, ajaxOptions, thrownError) {
-
-
-
-	            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-
-
-
-	        }
-
-
-
-		});
-
-
-
-	},
-
-
-
-	'remove': function() {
-
-
-
-
-
-
-
-	}
-
+    }
 
 
 }
 
 
-
-
-
-
-
 /* Agree to Terms */
 
 
+$(document).delegate('.agree', 'click', function (e) {
 
-$(document).delegate('.agree', 'click', function(e) {
 
+    e.preventDefault();
 
 
-	e.preventDefault();
+    $('#modal-agree').remove();
 
 
+    var element = this;
 
 
+    $.ajax({
 
 
+        url: $(element).attr('href'),
 
-	$('#modal-agree').remove();
 
+        type: 'get',
 
 
+        dataType: 'html',
 
 
+        success: function (data) {
 
 
-	var element = this;
+            html = '<div id="modal-agree" class="modal">';
 
 
+            html += '  <div class="modal-dialog">';
 
 
+            html += '    <div class="modal-content">';
 
 
+            html += '      <div class="modal-header">';
 
-	$.ajax({
 
+            html += '        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
 
 
-		url: $(element).attr('href'),
+            html += '        <h4 class="modal-title">' + $(element).text() + '</h4>';
 
 
+            html += '      </div>';
 
-		type: 'get',
 
+            html += '      <div class="modal-body">' + data + '</div>';
 
 
-		dataType: 'html',
+            html += '    </div';
 
 
+            html += '  </div>';
 
-		success: function(data) {
 
+            html += '</div>';
 
 
-			html  = '<div id="modal-agree" class="modal">';
+            $('body').append(html);
 
 
+            $('#modal-agree').modal('show');
 
-			html += '  <div class="modal-dialog">';
 
+        }
 
 
-			html += '    <div class="modal-content">';
-
-
-
-			html += '      <div class="modal-header">';
-
-
-
-			html += '        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
-
-
-
-			html += '        <h4 class="modal-title">' + $(element).text() + '</h4>';
-
-
-
-			html += '      </div>';
-
-
-
-			html += '      <div class="modal-body">' + data + '</div>';
-
-
-
-			html += '    </div';
-
-
-
-			html += '  </div>';
-
-
-
-			html += '</div>';
-
-
-
-
-
-
-
-			$('body').append(html);
-
-
-
-
-
-
-
-			$('#modal-agree').modal('show');
-
-
-
-		}
-
-
-
-	});
-
+    });
 
 
 });
 
 
-
-
-
-
-
 // Autocomplete */
 
 
+(function ($) {
 
-(function($) {
 
+    $.fn.autocomplete = function (option) {
 
 
-	$.fn.autocomplete = function(option) {
+        return this.each(function () {
 
 
+            this.timer = null;
 
-		return this.each(function() {
 
+            this.items = new Array();
 
 
-			this.timer = null;
+            $.extend(this, option);
 
 
+            $(this).attr('autocomplete', 'off');
 
-			this.items = new Array();
 
+            // Focus
 
 
+            $(this).on('focus', function () {
 
 
+                this.request();
 
 
-			$.extend(this, option);
+            });
 
 
+            // Blur
 
 
+            $(this).on('blur', function () {
 
 
+                setTimeout(function (object) {
 
-			$(this).attr('autocomplete', 'off');
 
+                    object.hide();
 
 
+                }, 200, this);
 
 
+            });
 
 
-			// Focus
+            // Keydown
 
 
+            $(this).on('keydown', function (event) {
 
-			$(this).on('focus', function() {
 
+                switch (event.keyCode) {
 
 
-				this.request();
+                    case 27: // escape
 
 
+                        this.hide();
 
-			});
 
+                        break;
 
 
+                    default:
 
 
+                        this.request();
 
 
-			// Blur
+                        break;
 
 
+                }
 
-			$(this).on('blur', function() {
 
+            });
 
 
-				setTimeout(function(object) {
+            // Click
 
 
+            this.click = function (event) {
 
-					object.hide();
 
+                event.preventDefault();
 
 
-				}, 200, this);
+                value = $(event.target).parent().attr('data-value');
 
 
+                if (value && this.items[value]) {
 
-			});
 
+                    this.select(this.items[value]);
 
 
+                }
 
 
+            }
 
 
-			// Keydown
+            // Show
 
 
+            this.show = function () {
 
-			$(this).on('keydown', function(event) {
 
+                var pos = $(this).position();
 
 
-				switch(event.keyCode) {
+                $(this).siblings('ul.dropdown-menu').css({
 
 
+                    top: pos.top + $(this).outerHeight(),
 
-					case 27: // escape
 
+                    left: pos.left
 
 
-						this.hide();
+                });
 
 
+                $(this).siblings('ul.dropdown-menu').show();
 
-						break;
 
+            }
 
 
-					default:
+            // Hide
 
 
+            this.hide = function () {
 
-						this.request();
 
+                $(this).siblings('ul.dropdown-menu').hide();
 
 
-						break;
+            }
 
 
+            // Request
 
-				}
 
+            this.request = function () {
 
 
-			});
+                clearTimeout(this.timer);
 
 
+                this.timer = setTimeout(function (object) {
 
 
+                    object.source($(object).val(), $.proxy(object.response, object));
 
 
+                }, 200, this);
 
-			// Click
 
+            }
 
 
-			this.click = function(event) {
+            // Response
 
 
+            this.response = function (json) {
 
-				event.preventDefault();
 
+                html = '';
 
 
+                if (json.length) {
 
 
+                    for (i = 0; i < json.length; i++) {
 
 
-				value = $(event.target).parent().attr('data-value');
+                        this.items[json[i]['value']] = json[i];
 
 
+                    }
 
 
+                    for (i = 0; i < json.length; i++) {
 
 
+                        if (!json[i]['category']) {
 
-				if (value && this.items[value]) {
 
+                            html += '<li data-value="' + json[i]['value'] + '"><a href="#">' + json[i]['label'] + '</a></li>';
 
 
-					this.select(this.items[value]);
+                        }
 
 
+                    }
 
-				}
 
+                    // Get all the ones with a categories
 
 
-			}
+                    var category = new Array();
 
 
+                    for (i = 0; i < json.length; i++) {
 
 
+                        if (json[i]['category']) {
 
 
+                            if (!category[json[i]['category']]) {
 
-			// Show
 
+                                category[json[i]['category']] = new Array();
 
 
-			this.show = function() {
+                                category[json[i]['category']]['name'] = json[i]['category'];
 
 
+                                category[json[i]['category']]['item'] = new Array();
 
-				var pos = $(this).position();
 
+                            }
 
 
+                            category[json[i]['category']]['item'].push(json[i]);
 
 
+                        }
 
 
-				$(this).siblings('ul.dropdown-menu').css({
+                    }
 
 
+                    for (i in category) {
 
-					top: pos.top + $(this).outerHeight(),
 
+                        html += '<li class="dropdown-header">' + category[i]['name'] + '</li>';
 
 
-					left: pos.left
+                        for (j = 0; j < category[i]['item'].length; j++) {
 
 
+                            html += '<li data-value="' + category[i]['item'][j]['value'] + '"><a href="#">&nbsp;&nbsp;&nbsp;' + category[i]['item'][j]['label'] + '</a></li>';
 
-				});
 
+                        }
 
 
+                    }
 
 
+                }
 
 
-				$(this).siblings('ul.dropdown-menu').show();
+                if (html) {
 
 
+                    this.show();
 
-			}
 
+                } else {
 
 
+                    this.hide();
 
 
+                }
 
 
-			// Hide
+                $(this).siblings('ul.dropdown-menu').html(html);
 
 
+            }
 
-			this.hide = function() {
 
+            $(this).after('<ul class="dropdown-menu"></ul>');
 
 
-				$(this).siblings('ul.dropdown-menu').hide();
+            $(this).siblings('ul.dropdown-menu').delegate('a', 'click', $.proxy(this.click, this));
 
 
+        });
 
-			}
 
-
-
-
-
-
-
-			// Request
-
-
-
-			this.request = function() {
-
-
-
-				clearTimeout(this.timer);
-
-
-
-
-
-
-
-				this.timer = setTimeout(function(object) {
-
-
-
-					object.source($(object).val(), $.proxy(object.response, object));
-
-
-
-				}, 200, this);
-
-
-
-			}
-
-
-
-
-
-
-
-			// Response
-
-
-
-			this.response = function(json) {
-
-
-
-				html = '';
-
-
-
-
-
-
-
-				if (json.length) {
-
-
-
-					for (i = 0; i < json.length; i++) {
-
-
-
-						this.items[json[i]['value']] = json[i];
-
-
-
-					}
-
-
-
-
-
-
-
-					for (i = 0; i < json.length; i++) {
-
-
-
-						if (!json[i]['category']) {
-
-
-
-							html += '<li data-value="' + json[i]['value'] + '"><a href="#">' + json[i]['label'] + '</a></li>';
-
-
-
-						}
-
-
-
-					}
-
-
-
-
-
-
-
-					// Get all the ones with a categories
-
-
-
-					var category = new Array();
-
-
-
-
-
-
-
-					for (i = 0; i < json.length; i++) {
-
-
-
-						if (json[i]['category']) {
-
-
-
-							if (!category[json[i]['category']]) {
-
-
-
-								category[json[i]['category']] = new Array();
-
-
-
-								category[json[i]['category']]['name'] = json[i]['category'];
-
-
-
-								category[json[i]['category']]['item'] = new Array();
-
-
-
-							}
-
-
-
-
-
-
-
-							category[json[i]['category']]['item'].push(json[i]);
-
-
-
-						}
-
-
-
-					}
-
-
-
-
-
-
-
-					for (i in category) {
-
-
-
-						html += '<li class="dropdown-header">' + category[i]['name'] + '</li>';
-
-
-
-
-
-
-
-						for (j = 0; j < category[i]['item'].length; j++) {
-
-
-
-							html += '<li data-value="' + category[i]['item'][j]['value'] + '"><a href="#">&nbsp;&nbsp;&nbsp;' + category[i]['item'][j]['label'] + '</a></li>';
-
-
-
-						}
-
-
-
-					}
-
-
-
-				}
-
-
-
-
-
-
-
-				if (html) {
-
-
-
-					this.show();
-
-
-
-				} else {
-
-
-
-					this.hide();
-
-
-
-				}
-
-
-
-
-
-
-
-				$(this).siblings('ul.dropdown-menu').html(html);
-
-
-
-			}
-
-
-
-
-
-
-
-			$(this).after('<ul class="dropdown-menu"></ul>');
-
-
-
-			$(this).siblings('ul.dropdown-menu').delegate('a', 'click', $.proxy(this.click, this));
-
-
-
-
-
-
-
-		});
-
-
-
-	}
-
+    }
 
 
 })(window.jQuery);

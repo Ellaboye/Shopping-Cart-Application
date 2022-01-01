@@ -2,9 +2,9 @@ package com.example.shoppingcartapplication.model;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @AllArgsConstructor
@@ -18,7 +18,7 @@ public class CartItem {
             sequenceName = "cartItem_sequence",
             allocationSize = 1)
     @GeneratedValue(
-            strategy  = SEQUENCE,
+            strategy = SEQUENCE,
             generator = "cartItem_sequence"
     )
     @Column(
@@ -43,7 +43,7 @@ public class CartItem {
 
     @ManyToOne
     @JoinColumn(name = "customerCartId", referencedColumnName = "id")
-    private  Customer customer;
+    private Customer customer;
 
     public Long getId() {
         return id;

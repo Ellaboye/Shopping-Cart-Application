@@ -12,7 +12,9 @@ import java.util.List;
 @Repository
 @Transactional
 public interface CartItemRepository extends JpaRepository<CartItem, Long> {
-     CartItem findCartItemByCustomerAndShop(Customer customer, Shop shop);
-     void deleteAllByShopId(Long shopId);
-     List<CartItem> findAllByCustomerId(Long personId);
+    CartItem findCartItemByCustomerAndShop(Customer customer, Shop shop);
+
+    void deleteAllByShopId(Long shopId);
+
+    List<CartItem> findAllByCustomerId(Long personId);
 }

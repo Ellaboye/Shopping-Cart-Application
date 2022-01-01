@@ -2,7 +2,9 @@ package com.example.shoppingcartapplication.model;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @AllArgsConstructor
@@ -11,7 +13,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public class Shop {
     @Id
     @SequenceGenerator(name = "product_sequence", sequenceName = "product_sequence", allocationSize = 1)
-    @GeneratedValue(strategy  = SEQUENCE, generator = "product_sequence")
+    @GeneratedValue(strategy = SEQUENCE, generator = "product_sequence")
     @Column(name = "id")
     private Long id;
 
@@ -36,7 +38,7 @@ public class Shop {
     @Column(name = "price", nullable = false, columnDefinition = "VARCHAR(45)")
     private Long price;
 
-    @ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customerId", referencedColumnName = "id")
     private Customer customer;
 

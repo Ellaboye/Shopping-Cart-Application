@@ -13,13 +13,9 @@ public class CartItemService {
     @Autowired
     CartItemRepository cartItemRepository;
 
-    /**
-     * GET operation on Order
-     * @param customer
-     * @param shop
-     * @return order by person on a particular product
-     * */
-    public CartItem getCartItem(Customer customer, Shop shop){
+
+    //order by person on a particular product
+    public CartItem getCartItem(Customer customer, Shop shop) {
         CartItem cartItem = null;
 
         try {
@@ -31,20 +27,15 @@ public class CartItemService {
         return cartItem;
     }
 
-    /**
-     * POST operation on Order
-     * add orders made by users on a product
-     * @param customer
-     * @param shop
-     * @return boolean
-     * */
-    public boolean addCartItem(Customer customer, Shop shop){
+
+    //add orders made by users on a product
+    public boolean addCartItem(Customer customer, Shop shop) {
         boolean flag = false;
 
         try {
             CartItem cartItem = cartItemRepository.findCartItemByCustomerAndShop(customer, shop);
 
-            if(cartItem == null){
+            if (cartItem == null) {
                 CartItem newCartItem = new CartItem();
                 Long count = 1L;
                 newCartItem.setMyCartItem(count);
@@ -53,7 +44,7 @@ public class CartItemService {
 
                 cartItemRepository.save(newCartItem);
 
-            }else {
+            } else {
                 cartItem.setMyCartItem(cartItem.getMyCartItem() + 1);
                 cartItem.setCustomer(customer);
                 cartItem.setShop(shop);
@@ -69,19 +60,15 @@ public class CartItemService {
         return flag;
     }
 
-    /**
-     * DELETE operation on Order
-     * @param orderId
-     * @return boolean
-     * */
-    public boolean deleteOrder(Long orderId){
+    //delete order
+    public boolean deleteOrder(Long orderId) {
         boolean flag = false;
 
         try {
             cartItemRepository.deleteById(orderId);
 
             flag = true;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

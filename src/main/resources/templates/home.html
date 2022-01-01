@@ -4,13 +4,13 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
-    <title>Online Shopping Mall</title>
+    <title>Stella Couture Online Shopping Cart</title>
     <meta content="" name="description"/>
     <meta content="" name="keywords"/>
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon"/>
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"/>
+    <link th:href="@{/favicon.png}" rel="icon"/>
+    <link th:href="@{/apple-touch-icon.png}" rel="apple-touch-icon"/>
 
     <!-- Google Fonts -->
     <link
@@ -19,24 +19,30 @@
     />
 
     <!-- Vendor CSS Files -->
+    <link rel="stylesheet" th:href="@{/bootstrap.min.css}"/>
+
     <link
-            href="assets/vendor/bootstrap/css/bootstrap.min.css"
+            th:href="@{/bootstrap-icons.css}"
             rel="stylesheet"
     />
+    <link th:href="@{/boxicons.min.css}" rel="stylesheet"/>
     <link
-            href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+            th:href="@{/glightbox.min.css}"
             rel="stylesheet"
     />
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"/>
-    <link
-            href="assets/vendor/glightbox/css/glightbox.min.css"
-            rel="stylesheet"
-    />
-    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet"/>
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"/>
+    <link th:href="@{/remixicon.css}" rel="stylesheet"/>
+    <link th:href="@{/swiper-bundle.min.css}" rel="stylesheet"/>
 
     <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/style1.css}"/>
+
+    <!--    <link rel="stylesheet" th:href="@{/owl.carousel.min.css}" />-->
+
+    <!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
+    <!--    <link rel="stylesheet" th:href="@{/bootstrap.min.css}" />-->
+
+    <!--    &lt;!&ndash; Style &ndash;&gt;-->
+    <!--    <link rel="stylesheet" th:href="@{/style1.css}" />-->
 
     <!-- =======================================================
   * Template Name: Personal - v4.2.0
@@ -67,16 +73,16 @@
         <!-- <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
         <h2>
             <div style="color: black; line-height: 56px">
-                Shop of Africa® KFC has revolutionized the
+                Shop in Africa® to get your
                 <span style="color:  rgb(48, 42, 42);">shopping experiences</span>
             </div>
             and become a leader in retail,
             <span style="color:  rgb(48, 42, 42);">entertainment and attractions.</span>
         </h2>
         <nav
-            id="navbar"
-            class="navbar"
-            style="
+                id="navbar"
+                class="navbar"
+                style="
                 border: 1px solid rgb(20, 18, 18);
                 padding: 10px;
                 background: rgba(239, 243, 240, 0.87);
@@ -87,10 +93,10 @@
             "
         >
             <ul>
-                <li><a class="nav-link active" href="#header">Home</a></li>
-                <li><a class="nav-link" href="#portfolio">Products</a></li>
-                <li><a class="nav-link" href="#profile">Profile</a></li>
-                <li><a class="nav-link" href="#contact">Admin</a></li>
+                <li><a class="nav-link active" th:href="@{#header}">Home</a></li>
+                <li><a class="nav-link" th:href="@{#portfolio}">Products</a></li>
+                <li><a class="nav-link" th:href="@{#profile}">Profile</a></li>
+                <li><a class="nav-link" th:href="@{#contact}">Admin</a></li>
                 <li><a class="nav-link" th:href="@{/processLogout}" style="color: rgb(48, 42, 42);">Logout</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
@@ -120,7 +126,7 @@
         </div>
 
         <div class="row portfolio-container">
-            <div th:each="product : ${products}">
+            <div th:each="shop : ${products}">
                 <div th:if="${shop.getCategory() == 'MEN WEAR'}">
                     <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                         <div class="portfolio-wrap">
@@ -129,16 +135,16 @@
                                     class="img-fluid"
                                     alt=""
                             />
-                            <div class="portfolio-info">
+                            <div class="portfolio-info" th:onclick="'prod('+${shop.getId()}+')'">
                                 <h4 th:text="${shop.getCategory()}"></h4>
                                 <p th:text="${shop.getName()}"></p>
                                 <div class="portfolio-links">
                                     <a
-                                        th:onclick="'prod('+${shop.getId()}+')'"
-                                        data-gallery="portfolioDetailsGallery"
-                                        data-glightbox="type: external"
-                                        class="portfolio-details-lightbox"
-                                        title="Portfolio Details"
+                                            th:onclick="'prod('+${shop.getId()}+')'"
+                                            data-gallery="portfolioDetailsGallery"
+                                            data-glightbox="type: external"
+                                            class="portfolio-details-lightbox"
+                                            title="Portfolio Details"
                                     ><i class="bx bx-link"></i
                                     ></a>
                                 </div>
@@ -154,15 +160,15 @@
                                     class="img-fluid"
                                     alt=""
                             />
-                            <div class="portfolio-info">
+                            <div class="portfolio-info" th:onclick="'prod('+${shop.getId()}+')'">
                                 <h4 th:text="${shop.getCategory()}"></h4>
                                 <p th:text="${shop.getName()}"></p>
                                 <div class="portfolio-links">
                                     <a th:onclick="'prod('+${shop.getId()}+')'"
-                                        data-gallery="portfolioDetailsGallery"
-                                        data-glightbox="type: external"
-                                        class="portfolio-details-lightbox"
-                                        title="Portfolio Details"
+                                       data-gallery="portfolioDetailsGallery"
+                                       data-glightbox="type: external"
+                                       class="portfolio-details-lightbox"
+                                       title="Portfolio Details"
                                     ><i class="bx bx-link"></i
                                     ></a>
                                 </div>
@@ -174,19 +180,19 @@
                     <div class="col-lg-4 col-md-6 portfolio-item filter-web">
                         <div class="portfolio-wrap">
                             <img
-                                th:src="${shop.getImage()}"
-                                class="img-fluid"
-                                alt=""
+                                    th:src="${shop.getImage()}"
+                                    class="img-fluid"
+                                    alt=""
                             />
-                            <div class="portfolio-info">
+                            <div class="portfolio-info" th:onclick="'prod('+${shop.getId()}+')'">
                                 <h4 th:text="${shop.getCategory()}"></h4>
                                 <p th:text="${shop.getName()}"></p>
                                 <div class="portfolio-links">
                                     <a th:onclick="'prod('+${shop.getId()}+')'"
-                                        data-gallery="portfolioDetailsGallery"
-                                        data-glightbox="type: external"
-                                        class="portfolio-details-lightbox"
-                                        title="Portfolio Details"
+                                       data-gallery="portfolioDetailsGallery"
+                                       data-glightbox="type: external"
+                                       class="portfolio-details-lightbox"
+                                       title="Portfolio Details"
                                     ><i class="bx bx-link"></i
                                     ></a>
                                 </div>
@@ -207,29 +213,30 @@
             <p th:text="${customer.fullName}"></p>
             <p th:text="${customer.email}"></p>
             <p th:text="${customer.phoneNumber}"></p>
+            <p th:text="${customer.getPosition()}"></p>
             <p>Product(s) added to cart</p>
         </div>
         <div>Cart <span th:text="${size}"></span> items</div>
 
-        <div th:each="order: ${orders}">
+        <div th:each="order: ${cartItem}">
             <div class="row portfolio-container">
                 <div class="col-lg-6 col-md-6 portfolio-item filter-web">
                     <div class="portfolio-wrap">
                         <img
-                                th:src="${cartItem.getShop().getImage()}"
+                                th:src="${order.getShop().getImage()}"
                                 class="img-fluid"
                                 alt=""
                         />
                         <div class="portfolio-info">
-                            <h4 th:text="${cartItem.getShop().getCategory()}"></h4>
-                            <p th:text="${cartItem.getShop().getName()}">Web</p>
+                            <h4 th:text="${order.getShop().getCategory()}"></h4>
+                            <p th:text="${order.getShop().getName()}">Web</p>
                             <div class="portfolio-links">
                                 <a
-                                    th:onclick="'prod('+${cartItem.getShop().getId()}+')'"
-                                    data-gallery="portfolioDetailsGallery"
-                                    data-glightbox="type: external"
-                                    class="portfolio-details-lightbox"
-                                    title="Portfolio Details"
+                                        th:onclick="'prod('+${order.getShop().getId()}+')'"
+                                        data-gallery="portfolioDetailsGallery"
+                                        data-glightbox="type: external"
+                                        class="portfolio-details-lightbox"
+                                        title="Portfolio Details"
                                 ><i class="bx bx-link"></i
                                 ></a>
                             </div>
@@ -237,15 +244,15 @@
                     </div>
                 </div>
                 <div
-                    class="col-lg-6 col-md-6 portfolio-item filter-web"
-                    style="line-height: 50px"
+                        class="col-lg-6 col-md-6 portfolio-item filter-web"
+                        style="line-height: 50px"
                 >
                     <h4>ITEM</h4>
-                    <div><strong>ORDER :</strong><span th:text="${cartItem.getMyCartItem()}"></span></div>
-                    <div><strong> UNIT PRICE: #</strong><span th:text="${cartItem.getShop().getPrice()}"></span></div>
-                    <div><strong>SUBTOTAL: #</strong><span th:text="${cartItem.getSum()}"></span></div>
+                    <div><strong>ORDER :</strong><span th:text="${order.getMyCartItem()}"></span></div>
+                    <div><strong> UNIT PRICE: #</strong><span th:text="${order.getShop().getPrice()}"></span></div>
+                    <div><strong>SUBTOTAL: #</strong><span th:text="${order.getSum()}"></span></div>
                     <br/>
-                    <button th:onclick="'delOrder('+${cartItem.getId()}+')'" type="button" class="btn btn-warning">
+                    <button th:onclick="'delOrder('+${order.getId()}+')'" type="button" class="btn btn-warning">
                         DELETE ORDER
                     </button>
                     <button type="button" class="btn btn-success">
@@ -302,20 +309,22 @@
             </div>
         </div>
         <br/>
-        <h2>Post New Product</h2><hr style="color: #4ceb95"/>
-        <form th:action="@{/adminFormProcessing}" th:object="${product}" method="POST" role="form" enctype="multipart/form-data" >
+        <h2>Post New Product</h2>
+        <hr style="color: #4ceb95"/>
+        <form th:action="@{/adminFormProcessing}" th:object="${shop}" method="POST" role="form"
+              enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6 form-group" style="margin-bottom: 20px">
                     <label for="name">Product Name</label><br/>
                     <input
-                        type="text"
-                        th:field="*{name}"
-                        th:value="${shop.getName()}"
-                        name="name"
-                        class="form-control"
-                        id="name"
-                        placeholder="Product Name"
-                        required
+                            type="text"
+                            th:field="*{name}"
+                            th:value="${shop.getName()}"
+                            name="name"
+                            class="form-control"
+                            id="name"
+                            placeholder="Product Name"
+                            required
                     />
                 </div>
                 <div class="col-md-6 form-group" style="margin-bottom: 20px">
@@ -334,46 +343,48 @@
                 <div class="col-md-6 form-group" style="margin-bottom: 20px">
                     <label for="count">Product Quantity</label><br/>
                     <input
-                        type="number"
-                        th:field="*{quantity}"
-                        name="name"
-                        class="form-control"
-                        id="count"
-                        placeholder="Product Quantity"
-                        required
+                            type="number"
+                            th:field="*{quantity}"
+                            name="name"
+                            class="form-control"
+                            id="count"
+                            placeholder="Product Quantity"
+                            required
                     />
                 </div>
 
                 <div class="col-md-6 form-group" style="margin-bottom: 20px">
                     <label for="price">Product Price</label><br/>
                     <input
-                        type="number"
-                        th:field="*{price}"
-                        name="name"
-                        class="form-control"
-                        id="price"
-                        placeholder="Product Price"
-                        required
+                            type="number"
+                            th:field="*{price}"
+                            name="name"
+                            class="form-control"
+                            id="price"
+                            placeholder="Product Price"
+                            required
                     />
-                </div><br/>
+                </div>
+                <br/>
                 <div class="col-md-6 form-group" style="margin-bottom: 20px">
                     <label for="file_img">Upload Image of the product</label><br/>
                     <input
-                        type="file"
-                        name="file"
-                        class="form-control"
-                        id="file_img"
-                        required
+                            type="file"
+                            name="file"
+                            class="form-control"
+                            id="file_img"
+                            required
                     />
-                </div><br/>
+                </div>
+                <br/>
                 <div class="col-md-6 form-group" style="margin-bottom: 20px">
                     <label for="description">The Product Description</label><br/>
                     <textarea
-                        name="description"
-                        th:field="*{description}"
-                        id="description"
-                        rows="5"
-                        cols="55"
+                            name="description"
+                            th:field="*{description}"
+                            id="description"
+                            rows="5"
+                            cols="55"
                     ></textarea>
                 </div>
                 <br/>
@@ -385,27 +396,34 @@
             <table class="table table-striped">
                 <thead>
                 <tr style="color: #fff">
-                    <th scope="col">Product Image</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Product Category</th>
-                    <th scope="col">Product Price</th>
-                    <th scope="col">Product Quantity</th>
+                    <th scope="col">Shop Image</th>
+                    <th scope="col">Shop Name</th>
+                    <th scope="col">Shop Category</th>
+                    <th scope="col">Shop Price</th>
+                    <th scope="col">Shop Quantity</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
-                    <div th:each="pro: ${products}">
-                        <tr style="color: #fff">
-                            <th scope="row"><img th:src="${pro.getImage()}" width="50px" height="50px"></th>
-                            <td th:text="${pro.getName()}"></td>
-                            <td th:text="${pro.getCategory()}"></td>
-                            <td th:text="${pro.getPrice()}"></td>
-                            <td th:text="${pro.getQuantity()}"></td>
-                            <td><button class="btn btn-danger" th:onclick="'del('+${pro.getId()}+')'">Delete<i class="fa fa-remove"></i></button></td>
-                            <td><button type="button" class="btn btn-warning" th:onclick="'edit('+${pro.getId()}+')'">Edit</button></td>
-                        </tr>
-                    </div>
+                <div th:each="shop: ${products}">
+                    <tr style="color: #fff">
+                        <th scope="row"><img th:src="${shop.getImage()}" width="50px" height="50px"></th>
+                        <td th:text="${shop.getName()}"></td>
+                        <td th:text="${shop.getCategory()}"></td>
+                        <td th:text="${shop.getPrice()}"></td>
+                        <td th:text="${shop.getQuantity()}"></td>
+                        <td>
+                            <button class="btn btn-danger" th:onclick="'del('+${shop.getId()}+')'">Delete<i
+                                    class="fa fa-remove"></i></button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-warning" th:onclick="'edit('+${shop.getId()}+')'">
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
+                </div>
                 </tbody>
             </table>
         </div>
@@ -418,36 +436,37 @@
 </div>
 
 <!-- Vendor JS Files -->
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
-<script src="assets/vendor/purecounter/purecounter.js"></script>
-<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="/bootstrap.bundle.min.js"></script>
+<script src="/glightbox.min.js"></script>
+<script src="/isotope.pkgd.min.js"></script>
+<script src="/validate.js"></script>
+<script src="/purecounter.js"></script>
+<script src="/swiper-bundle.min.js"></script>
+<script src="/noframework.waypoints.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
+<script th:src="@{/main.js}"></script>
 <script>
 
-    function prod(id){
-        window.location.href = "/product/"+id;
+    function prod(id) {
+        console.log("got here");
+        window.location.href = "/product/" + id;
     }
 
-    function del(id){
-        console.log("delete "+id);
-        window.location.href = "/delete/"+id;
+    function del(id) {
+        console.log("delete " + id);
+        window.location.href = "/delete/" + id;
     }
 
-    function edit(id){
-        console.log("edit "+id);
-        window.location.href = "/edit/"+id;
+    function edit(id) {
+        console.log("edit " + id);
+        window.location.href = "/edit/" + id;
     }
 
-    function delOrder(id){
-        console.log("delOrder "+id);
-        window.location.href = "/deleteOrder/"+id;
+    function delOrder(id) {
+        console.log("delOrder " + id);
+        window.location.href = "/deleteOrder/" + id;
     }
 </script>
 </body>

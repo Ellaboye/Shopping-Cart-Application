@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-@Transactional
+//@Transactional
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
     Customer findCustomerByEmail(String email);
 }

@@ -39,7 +39,7 @@ public class CustomerController {
     public String showRegister(HttpServletRequest request, HttpServletResponse response,
                                Model model, HttpSession session, @ModelAttribute("user") Customer customer) {
 
-        if(customer != null)
+        if (customer != null)
             model.addAttribute("person", customer);
         else
             model.addAttribute("person", new Customer());
@@ -47,11 +47,7 @@ public class CustomerController {
         return "signup";
     }
 
-    /**
-     * Get request to process logging out to the index page
-     * destroy every attributes saved in session
-     * redirect to index page
-     * */
+    //logging customers out
     @RequestMapping(value = "/processLogout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request, HttpServletResponse response) {
 
@@ -61,72 +57,65 @@ public class CustomerController {
         return "redirect:/";
     }
 
-    /**
-     * GET request to show Home page made to users
-     * redirects user if not in session
-     * send required data(products, user, orders) to be loaded in the page
-     * */
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String showHome(HttpServletRequest request, HttpServletResponse response,
                            Model model, HttpSession session) {
 
+        //request for customers  attribute to show home page
+        session = request.getSession();
         Customer customer = (Customer) session.getAttribute("user");
 
-        if(customer == null) return "redirect:/";
-
-        Shop shop = new Shop();
-
-        model.addAttribute("shop", shop);
+        if (customer == null) return "redirect:/";
 
         List<CartItemMapper> cartItem = shoppingService.getCartItemOnShopBy(customer.getId());
         //shop in store
         List<Shop> shops = shoppingService.getShop();
 
-        model.addAttribute("products", shop);
-        model.addAttribute("user", shop);
-        model.addAttribute("orders", shop);
+        Shop shop = new Shop();
+
+
+        //send required data to be loaded in the page
+
+        model.addAttribute("shop", shop);
+        model.addAttribute("products", shops);
+        model.addAttribute("user", customer);
         model.addAttribute("size", cartItem.size());
+        model.addAttribute("customer", customer);
+        model.addAttribute("cartItem", cartItem);
 
         return "home";
     }
 
-    /**
-     * GET request to show the login page
-     * returns the page
-     * */
+
+    //request to show the login page
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showLogin(HttpServletRequest request, HttpServletResponse response, Model model) {
         model.addAttribute("user", new Customer());
         return "index";
     }
 
-    /**
-     * POST request to process login system
-     * redirects user if validation fails
-     * else redirect user to home page
-     * and store user in session
-     * */
+
+    //POST request to process login process
     @RequestMapping(value = "/loginProcessing", method = RequestMethod.POST)
     public String processLogin(HttpServletRequest request, HttpServletResponse response,
-                               @ModelAttribute("customer") Customer customer, HttpSession session) {
+                               @ModelAttribute("user") Customer customer, HttpSession session) {
 
+        System.out.println(customer);
         Customer user = customerService.loginUser(customer.getEmail(), customer.getPassword());
 
-        if(user != null){
+        //redirect user to home page if details are valid and store user in session
+        if (user != null) {
             session.setAttribute("user", user);
             session.removeAttribute("message");
             return "redirect:/home";
-        }else {
+        } else {
             session.setAttribute("message", "Email or Password is wrong!!!");
             return "redirect:/";
         }
     }
 
-    /**
-     * POST request for registration
-     * validate user inputs
-     * if fails redirect back to registration page
-     * */
+
+    //POST request for registration
     @RequestMapping(value = "/signupProcessing", method = RequestMethod.POST)
     public String processRegistration(HttpServletRequest request, HttpServletResponse response,
                                       @ModelAttribute("person") Customer customer, RedirectAttributes redirectAttributes) {
@@ -134,18 +123,18 @@ public class CustomerController {
         HttpSession session = request.getSession();
 
         //validation
-        String validated = Validation.validateRegistration(customer.getEmail(), customer.getGender(), customer.getPassword(), customer.getPhoneNumber(),
-                customer.getFullName());
+        String validated = Validation.validateRegistration(customer.getEmail(), customer.getGender(), customer.getPassword(),
+                customer.getPhoneNumber(), customer.getFullName());
 
-        if(!validated.equals("Successful validation")){
+        if (!validated.equals("Successful validation")) {
             session.setAttribute("message", validated);
             redirectAttributes.addFlashAttribute("user", customer);
             return "redirect:/signup";
         }
 
-        if(customerService.createUser(customer)){
+        if (customerService.createUser(customer)) {
             session.setAttribute("message", "Successfully Registered!!!");
-        }else {
+        } else {
             session.setAttribute("message", "Registration failed!!! or Email already exists");
         }
 

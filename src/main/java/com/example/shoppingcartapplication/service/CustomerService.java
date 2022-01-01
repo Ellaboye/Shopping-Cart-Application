@@ -12,12 +12,8 @@ public class CustomerService {
     @Autowired
     CustomerRepository customerRepository;
 
-    /**
-     * CREATE operation on Person
-     * @param customer
-     * @return boolean
-     * */
-    public boolean createUser(Customer customer){
+    //create user
+    public boolean createUser(Customer customer) {
         boolean flag = false;
 
         try {
@@ -25,7 +21,7 @@ public class CustomerService {
 
             Customer userData = customerRepository.findCustomerByEmail(customer.getEmail());
 
-            if(userData == null) {
+            if (userData == null) {
                 customer.setPosition("user");
                 customerRepository.save(customer);
                 flag = true;
@@ -38,29 +34,18 @@ public class CustomerService {
         return flag;
     }
 
-    /**
-     * GET operation on Person
-     * @param email
-     * @param password
-     * @return boolean(true for successful update and false on failure on post)
-     * */
-    public Customer loginUser(String email, String password){
+    //login users with email and password
+    public Customer loginUser(String email, String password) {
 
-        Customer userData = null;
+        Customer userData;
 
-        try {
-
-            userData = customerRepository.findCustomerByEmail(email);
-
-            if(userData != null){
-                if(!password.equals(PasswordHashing.decryptPassword(userData.getPassword())))
-                    userData = null;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        userData = customerRepository.findCustomerByEmail(email);
+//        System.out.println(userData);
+//        if(userData != null){
+//
+//            if(!password.equals(PasswordHashing.decryptPassword(userData.getPassword())))
+//                userData = null;
+//        }
         return userData;
     }
 }
